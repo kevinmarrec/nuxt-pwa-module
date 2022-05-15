@@ -29,6 +29,7 @@ export interface MetaOptions {
 
 export interface ManifestOptions {
   name: string
+  short_name: string
   description: string
   lang: string
   start_url: string
