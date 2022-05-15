@@ -40,5 +40,10 @@
     "nuxt": "^3.0.0-rc.3",
     "standard-version": "^9.3.2",
     "typescript": "^4.6.4"
+  },
+  "build": {
+    "externals": [
+      "pathe"
+    ]
   }
 }
