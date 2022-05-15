@@ -1,0 +1,44 @@
+{
+  "name": "@kevinmarrec/nuxt-pwa",
+  "version": "0.0.0",
+  "description": "Zero config PWA solution for Nuxt 3",
+  "author": "Kevin Marrec <kevin@marrec.io>",
+  "license": "MIT",
+  "homepage": "https://github.com/kevinmarrec/nuxt-pwa-module#readme",
+  "repository": "https://github.com/kevinmarrec/nuxt-pwa-module",
+  "keywords": [
+    "nuxt",
+    "pwa",
+    "module"
+  ],
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "type": "module",
+  "main": "./dist/module.cjs",
+  "module": "./dist/module.mjs",
+  "types": "./dist/module.d.ts",
+  "scripts": {
+    "build": "nuxt-module-build",
+    "dev": "nuxi dev example",
+    "example:build": "nuxi build example",
+    "example:start": "node example/.output/server/index.mjs",
+    "lint": "eslint --ext js,ts,vue ."
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^0.1.7",
+    "@nuxtjs/eslint-config-typescript": "^10.0.0",
+    "@unocss/nuxt": "^0.33.4",
+    "eslint": "^8.15.0",
+    "nuxt": "^3.0.0-rc.3",
+    "standard-version": "^9.3.2",
+    "typescript": "^4.6.4"
+  }
+}

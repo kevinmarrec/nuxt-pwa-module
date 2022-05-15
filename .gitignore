@@ -1,0 +1,19 @@
+# Dependencies
+node_modules
+
+# Logs
+*.log*
+
+# IDE
+.idea
+.vscode
+
+# Nuxt build
+.nuxt*
+.output
+
+# Module build
+dist
+
+# Environment files
+.env*
