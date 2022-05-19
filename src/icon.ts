@@ -55,7 +55,7 @@ export default (pwa: PWAContext) => {
       const child = fork(pwa._resolver.resolve('../lib/resize.cjs'), [resizeOptions])
       child.on('exit', (code: number) => code ? reject(code) : resolve())
     }).then(() => {
-      consola.success('PWA icons generated', `in ${Date.now() - start} ms`)
+      consola.success(`PWA icons generated in ${Date.now() - start} ms`)
     })
   })
 
