@@ -1,5 +1,5 @@
-import { join } from 'path'
-import { defineNuxtModule } from '@nuxt/kit'
+import { join } from 'pathe'
+import { createResolver, defineNuxtModule } from '@nuxt/kit'
 import icon from './icon'
 import manifest from './manifest'
 import meta from './meta'
@@ -59,7 +59,8 @@ export default defineNuxtModule<PWAOptions>({
   setup (options, nuxt) {
     const pwa: PWAContext = {
       ...options,
-      _buildDir: join(nuxt.options.buildDir, 'pwa')
+      _assetsDir: join(nuxt.options.buildDir, 'pwa'),
+      _resolver: createResolver(import.meta.url)
     }
 
     icon(pwa)
@@ -67,8 +68,12 @@ export default defineNuxtModule<PWAOptions>({
     meta(pwa)
     workbox(pwa)
 
+    // Nitro will serve PWA assets
     const { nitro } = nuxt.options
     nitro.publicAssets = nitro.publicAssets || []
-    nitro.publicAssets.push({ dir: pwa._buildDir })
+    nitro.publicAssets.push({
+      baseURL: nuxt.options.app.buildAssetsDir,
+      dir: pwa._assetsDir
+    })
   }
 })

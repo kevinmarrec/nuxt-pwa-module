@@ -1,6 +1,9 @@
 import { defineNuxtConfig } from 'nuxt'
 
 export default defineNuxtConfig({
+  app: {
+    buildAssetsDir: '/assets/'
+  },
   buildModules: [
     '@unocss/nuxt',
     '../src/module'
