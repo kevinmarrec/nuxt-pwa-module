@@ -20,9 +20,7 @@ export default (pwa: PWAContext) => {
   }
 
   if (!existsSync(options.source)) {
-    // eslint-disable-next-line no-console
-    consola.warn(`[PWA] Icon not found at ${options.source}`)
-    return
+    return consola.warn(`[PWA] Icon not found at ${options.source}`)
   }
 
   if (options.sizes.length === 0) {

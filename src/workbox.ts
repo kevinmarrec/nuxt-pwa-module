@@ -1,5 +1,6 @@
 import { join } from 'pathe'
 import { addPlugin, addTemplate, useNuxt } from '@nuxt/kit'
+import consola from 'consola'
 import type { PWAContext } from './types'
 
 export default (pwa: PWAContext) => {
@@ -8,10 +9,9 @@ export default (pwa: PWAContext) => {
   const options = pwa.workbox
   const nuxt = useNuxt()
 
-  // Warning when in develpoment mode
+  // Warning when in development mode
   if (nuxt.options.dev) {
-    // eslint-disable-next-line no-console
-    console.warn('Workbox is running in development mode')
+    consola.warn('[PWA] Workbox is running in development mode')
   }
 
   // Use Workbox CDN by default
