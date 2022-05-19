@@ -60,7 +60,7 @@ export interface PWAOptions {
 export interface PWAContext extends PWAOptions {
   _assetsDir: string
   _manifestMeta?: { rel: 'manifest', href: string }
-  _resolver: { resolve: (...path: any[]) => string }
+  _resolver: { resolve: (...path: string[]) => string }
 }
 
 declare module '@nuxt/schema' {
