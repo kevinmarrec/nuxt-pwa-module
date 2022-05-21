@@ -1,5 +1,5 @@
-import { join } from 'path'
-import { defineNuxtModule } from '@nuxt/kit'
+import { join } from 'pathe'
+import { createResolver, defineNuxtModule } from '@nuxt/kit'
 import icon from './icon'
 import manifest from './manifest'
 import meta from './meta'
@@ -56,19 +56,19 @@ export default defineNuxtModule<PWAOptions>({
       // TODO: More Workbox options
     }
   }),
-  setup (options, nuxt) {
+  async setup (options, nuxt) {
     const pwa: PWAContext = {
       ...options,
-      _buildDir: join(nuxt.options.buildDir, 'pwa')
+      // Nitro serve assets from .nuxt/dist/client by default
+      _assetsDir: join(nuxt.options.buildDir, 'dist/client'),
+      _resolver: createResolver(import.meta.url)
     }
 
-    icon(pwa)
+    // Await is required for icons cause it needs to get source icon hash from its content
+    await icon(pwa)
+
     manifest(pwa)
     meta(pwa)
     workbox(pwa)
-
-    const { nitro } = nuxt.options
-    nitro.publicAssets = nitro.publicAssets || []
-    nitro.publicAssets.push({ dir: pwa._buildDir })
   }
 })

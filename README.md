@@ -36,7 +36,6 @@ As this module tries to be compliant with Nuxt 2 PWA for easy migration, you can
 ## ⚠️ Missing features ⚠️
 
 Compared to Nuxt 2 PWA, this module is - as for now - missing the following features:
-- Icons generation (it uses same base icon for all sizes, without resizing)
 - Workbox extra options (`enabled`, `workboxUrl`, `workboxVersion` only supported)
 - OneSignal support
 

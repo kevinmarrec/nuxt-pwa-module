@@ -21,7 +21,6 @@ export default (pwa: PWAContext) => {
   // statusBarStyle (IOS)
   if (options.mobileAppIOS || options.appleStatusBarStyle) {
     head.meta.push({
-      hid: 'apple-mobile-web-app-status-bar-style',
       name: 'apple-mobile-web-app-status-bar-style',
       content: options.appleStatusBarStyle || 'default'
     })
@@ -45,7 +44,7 @@ export default (pwa: PWAContext) => {
   head.title = options.name
 
   // IOS launch icon title
-  head.meta.push({ hid: 'apple-mobile-web-app-title', name: 'apple-mobile-web-app-title', content: options.name })
+  head.meta.push({ name: 'apple-mobile-web-app-title', content: options.name })
 
   // Author
   if (options.author) {

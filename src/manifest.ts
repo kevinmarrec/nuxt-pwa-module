@@ -1,16 +1,28 @@
 import { join } from 'pathe'
-import { addTemplate } from '@nuxt/kit'
+import hasha from 'hasha'
+import { addTemplate, useNuxt } from '@nuxt/kit'
 import { PWAContext } from './types'
 
 export default (pwa: PWAContext) => {
   if (!pwa.manifest) { return }
 
+  const nuxt = useNuxt()
+
+  const manifestJson = JSON.stringify(pwa.manifest, null, 2)
+
+  const filename = nuxt.options.dev
+    ? 'pwa.manifest.json'
+    : `pwa.manifest.${hasha(manifestJson, { algorithm: 'md5' }).slice(0, 8)}.json`
+
   addTemplate({
-    filename: 'manifest.json',
-    dst: join(pwa._buildDir, 'manifest.json'),
+    filename,
+    dst: join(pwa._assetsDir, filename),
     write: true,
-    getContents: () => JSON.stringify(pwa.manifest, null, 2)
+    getContents: () => manifestJson
   })
 
-  pwa._manifestMeta = { rel: 'manifest', href: '/manifest.json' }
+  pwa._manifestMeta = {
+    rel: 'manifest',
+    href: join(nuxt.options.app.buildAssetsDir, filename)
+  }
 }
