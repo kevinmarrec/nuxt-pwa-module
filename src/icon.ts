@@ -1,11 +1,17 @@
 import { existsSync } from 'node:fs'
 import { fork } from 'node:child_process'
 import consola from 'consola'
+import hasha from 'hasha'
 import { join, resolve } from 'pathe'
 import { useNuxt } from '@nuxt/kit'
 import type { PWAContext } from './types'
 
-export default (pwa: PWAContext) => {
+async function getFileHash (filePath: string): Promise<string> {
+  const hash = await hasha.fromFile(filePath, { algorithm: 'md5' })
+  return hash.slice(0, 8)
+}
+
+export default async (pwa: PWAContext) => {
   if (!pwa.icon || !pwa.manifest) { return }
 
   const options = pwa.icon
@@ -27,10 +33,13 @@ export default (pwa: PWAContext) => {
     options.sizes = [64, 120, 144, 152, 192, 384, 512]
   }
 
+  // Add source icon hash as suffix for production
+  const iconSuffix = nuxt.options.dev ? '' : `.${await getFileHash(options.source)}`
+
   // Prepare manifest file
   for (const size of options.sizes) {
     pwa.manifest.icons.push({
-      src: join(nuxt.options.app.buildAssetsDir, options.targetDir, `${size}x${size}.png`),
+      src: join(nuxt.options.app.buildAssetsDir, options.targetDir, `${size}x${size}${iconSuffix}.png`),
       type: 'image/png',
       sizes: `${size}x${size}`,
       // TODO: Find a solution to the 'any maskable' discouraged message from Lighthouse
@@ -41,7 +50,8 @@ export default (pwa: PWAContext) => {
   const resizeOptions = JSON.stringify({
     input: options.source,
     distDir: join(pwa._assetsDir, options.targetDir),
-    sizes: options.sizes
+    sizes: options.sizes,
+    suffix: iconSuffix
   })
 
   let generate: Promise<void>

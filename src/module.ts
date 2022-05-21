@@ -56,7 +56,7 @@ export default defineNuxtModule<PWAOptions>({
       // TODO: More Workbox options
     }
   }),
-  setup (options, nuxt) {
+  async setup (options, nuxt) {
     const pwa: PWAContext = {
       ...options,
       // Nitro serve assets from .nuxt/dist/client by default
@@ -64,7 +64,9 @@ export default defineNuxtModule<PWAOptions>({
       _resolver: createResolver(import.meta.url)
     }
 
-    icon(pwa)
+    // Await is required for icons cause it needs to get source icon hash from its content
+    await icon(pwa)
+
     manifest(pwa)
     meta(pwa)
     workbox(pwa)
