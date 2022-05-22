@@ -15,7 +15,7 @@ export default defineNuxtModule<PWAOptions>({
       source: null,
       sizes: [],
       fileName: 'icon.png',
-      targetDir: 'icons'
+      targetDir: 'icons',
     },
     manifest: {
       name: process.env.npm_package_name!,
@@ -26,7 +26,11 @@ export default defineNuxtModule<PWAOptions>({
       display: 'standalone',
       background_color: '#ffffff',
       theme_color: '#000000',
-      icons: []
+      icons: [],
+      iosSplashSreen: {
+        targetDir: 'splash',
+        backgroundColor: '#ffffff'
+      }
     },
     meta: {
       name: process.env.npm_package_name!,

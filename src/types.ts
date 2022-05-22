@@ -24,7 +24,8 @@ export interface MetaOptions {
   ogUrl: boolean | string
   twitterCard: string | undefined
   twitterSite: string | undefined
-  twitterCreator: string | undefined
+  twitterCreator: string | undefined,
+
 }
 
 export interface ManifestOptions {
@@ -41,7 +42,12 @@ export interface ManifestOptions {
     type: string
     sizes: String
     purpose?: string
-  }>
+  }>,
+  iosSplashSreen: {
+    // fileName: string
+    targetDir: string,
+    backgroundColor: string
+  }
 }
 
 export interface WorkboxOptions {
