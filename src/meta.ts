@@ -40,20 +40,39 @@ export default (pwa: PWAContext) => {
   }
   // TODO: Launch Screen Image (IOS)
   if (pwa.manifest.iosSplashSreen) {
-    // get all images name , split `-` ,  get w and h , then inject
-    head.link.push(
-      { href: `${pwa.manifest.iosSplashSreen.targetDir}/iphone6-splash-screen.png`, media: "(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)", rel: "apple-touch-startup-image" }
-      // < link href = "splashscreens/iphone5_splash.png" media = "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel = "apple-touch-startup-image" />
-      // <link href="splashscreens/iphone6_splash.png" media = "(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel = "apple-touch-startup-image" />
-      // <link href="splashscreens/iphoneplus_splash.png" media = "(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel = "apple-touch-startup-image" />
-      // <link href="splashscreens/iphonex_splash.png" media = "(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel = "apple-touch-startup-image" />
-      // <link href="splashscreens/iphonexr_splash.png" media = "(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel = "apple-touch-startup-image" />
-      // <link href="splashscreens/iphonexsmax_splash.png" media = "(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel = "apple-touch-startup-image" />
-      // <link href="splashscreens/ipad_splash.png" media = "(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel = "apple-touch-startup-image" />
-      // <link href="splashscreens/ipadpro1_splash.png" media = "(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel = "apple-touch-startup-image" />
-      // <link href="splashscreens/ipadpro3_splash.png" media = "(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel = "apple-touch-startup-image" />
-      // <link href="splashscreens/ipadpro2_splash.png" media = "(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel = "apple-touch-startup-image" />
-    )
+    // Load from constat file
+    const devices = [
+      { width: 2732, height: 2048, pixelRatio: 2, orientation: 'landscape' },
+      { width: 1668, height: 2388, pixelRatio: 2, orientation: 'portrait' },
+      { width: 2388, height: 1668, pixelRatio: 2, orientation: 'landscape' },
+      { width: 1536, height: 2048, pixelRatio: 2, orientation: 'portrait' },
+      { width: 2048, height: 1536, pixelRatio: 2, orientation: 'landscape' },
+      { width: 1668, height: 2224, pixelRatio: 2, orientation: 'portrait' },
+      { width: 2224, height: 1668, pixelRatio: 2, orientation: 'landscape' },
+      { width: 1620, height: 2160, pixelRatio: 2, orientation: 'portrait' },
+      { width: 2160, height: 1620, pixelRatio: 2, orientation: 'landscape' },
+      { width: 1284, height: 2778, pixelRatio: 2, orientation: 'portrait' },
+      { width: 2778, height: 1284, pixelRatio: 3, orientation: 'landscape' },
+      { width: 1170, height: 2532, pixelRatio: 3, orientation: 'portrait' },
+      { width: 2532, height: 1170, pixelRatio: 3, orientation: 'landscape' },
+      { width: 1125, height: 2436, pixelRatio: 3, orientation: 'portrait' },
+      { width: 2436, height: 1125, pixelRatio: 3, orientation: 'landscape' },
+      { width: 1242, height: 2688, pixelRatio: 3, orientation: 'portrait' },
+      { width: 2688, height: 1242, pixelRatio: 3, orientation: 'landscape' },
+      { width: 828, height: 1792, pixelRatio: 2, orientation: 'portrait' },
+      { width: 1792, height: 828, pixelRatio: 2, orientation: 'landscape' },
+      { width: 1242, height: 2208, pixelRatio: 2, orientation: 'portrait' },
+      { width: 2208, height: 1242, pixelRatio: 2, orientation: 'landscape' },
+      { width: 750, height: 1334, pixelRatio: 2, orientation: 'portrait' },
+      { width: 1334, height: 750, pixelRatio: 2, orientation: 'landscape' },
+      { width: 640, height: 1136, pixelRatio: 2, orientation: 'portrait' },
+      { width: 1136, height: 640, pixelRatio: 2, orientation: 'landscape' }
+    ]
+    for (const device of devices) {
+      head.link.push(
+        { href: `${device.width}-${device.height}-splash-screen.png`, media: `(device-width: ${device.width / 2}px) and (device-height: ${device.height / 2}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: "apple-touch-startup-image" }
+      )
+    }
   }
 
   // Title
