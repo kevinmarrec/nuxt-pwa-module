@@ -54,12 +54,10 @@ export default async (pwa: PWAContext) => {
     suffix: iconSuffix
   })
 
-
-  // DIRECT for DEV only
   const iosSplashSreenOption = JSON.stringify({
     input: options.source,
-    distDir: join(pwa._assetsDir, pwa.manifest.iosSplashSreen.targetDir),
-    backgroundColor: pwa.manifest.iosSplashSreen.backgroundColor
+    distDir: join(pwa._assetsDir, options.targetDir),
+    backgroundColor: pwa.manifest.background_color
   })
 
   let generate: Promise<void>
@@ -72,7 +70,6 @@ export default async (pwa: PWAContext) => {
     // Generation Promise (generate in a child process using fork)
     generate = new Promise<void>((resolve, reject) => {
       const child = fork(pwa._resolver.resolve('../lib/resize.cjs'), [resizeOptions])
-      // launch splash screen generation
       child.on('exit', (code: number) => code ? reject(code) : resolve())
     }).then(() => {
       consola.success(`PWA icons generated in ${Date.now() - start} ms`)
@@ -81,8 +78,6 @@ export default async (pwa: PWAContext) => {
       const child = fork(pwa._resolver.resolve('../lib/splash.cjs'), [iosSplashSreenOption])
       child.on('exit', (code: number) => code ? reject(code) : resolve())
     }).then(() => {
-      // inject ios splash screeen into head
-      // then
       consola.success(`Splash Screen genrated in ${Date.now() - start} ms`)
     })
   })

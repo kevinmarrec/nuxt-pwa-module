@@ -1,8 +1,4 @@
-const { remove, mkdirp } = require('fs-extra')
-const { join } = require('pathe')
-const sharp = require('sharp')
-
-const devices =  [
+export default [
   { width: 2732, height: 2048, pixelRatio: 2, orientation: 'landscape' },
   { width: 1668, height: 2388, pixelRatio: 2, orientation: 'portrait' },
   { width: 2388, height: 1668, pixelRatio: 2, orientation: 'landscape' },
@@ -12,7 +8,7 @@ const devices =  [
   { width: 2224, height: 1668, pixelRatio: 2, orientation: 'landscape' },
   { width: 1620, height: 2160, pixelRatio: 2, orientation: 'portrait' },
   { width: 2160, height: 1620, pixelRatio: 2, orientation: 'landscape' },
-  { width: 1284, height: 2778, pixelRatio: 2, orientation: 'portrait' },
+  { width: 1284, height: 2778, pixelRatio: 2, orientation: 'portrait' }, 
   { width: 2778, height: 1284, pixelRatio: 3, orientation: 'landscape' },
   { width: 1170, height: 2532, pixelRatio: 3, orientation: 'portrait' },
   { width: 2532, height: 1170, pixelRatio: 3, orientation: 'landscape' },
@@ -29,30 +25,3 @@ const devices =  [
   { width: 640, height: 1136, pixelRatio: 2, orientation: 'portrait' },
   { width: 1136, height: 640, pixelRatio: 2, orientation: 'landscape' }
 ]
-
-
-async function splashCreation({ input, distDir, backgroundColor }) {
-  await remove(distDir)
-  await mkdirp(distDir)
-  await Promise.all(devices.map(device =>
-    sharp({
-      create: {
-        width: device.width,
-        height: device.height,
-        channels: 4,
-        background: backgroundColor
-      }
-    }).composite([
-      { input }
-    ])
-      .png()
-      .toFile(join(distDir, `${device.width}x${device.height}-splash-screen.png`))
-  ))
-}
-
-splashCreation(JSON.parse(process.argv[2])).then(() => {
-  process.exit(0)
-}).catch((error) => {
-  console.error(error) // eslint-disable-line no-console
-  process.exit(1)
-})

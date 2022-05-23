@@ -42,12 +42,7 @@ export interface ManifestOptions {
     type: string
     sizes: String
     purpose?: string
-  }>,
-  iosSplashSreen: {
-    // fileName: string
-    targetDir: string,
-    backgroundColor: string
-  }
+  }>
 }
 
 export interface WorkboxOptions {

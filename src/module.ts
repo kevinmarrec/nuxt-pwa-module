@@ -26,11 +26,7 @@ export default defineNuxtModule<PWAOptions>({
       display: 'standalone',
       background_color: '#ffffff',
       theme_color: '#000000',
-      icons: [],
-      iosSplashSreen: {
-        targetDir: 'splash',
-        backgroundColor: '#ffffff'
-      }
+      icons: []
     },
     meta: {
       name: process.env.npm_package_name!,
@@ -38,7 +34,7 @@ export default defineNuxtModule<PWAOptions>({
       description: process.env.npm_package_description!,
       favicon: true,
       mobileApp: true,
-      mobileAppIOS: false,
+      mobileAppIOS: true,
       appleStatusBarStyle: false,
       theme_color: undefined,
       lang: 'en',

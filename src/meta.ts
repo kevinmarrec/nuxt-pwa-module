@@ -1,5 +1,7 @@
 import { useNuxt } from '@nuxt/kit'
 import type { PWAContext } from './types'
+import { join } from 'pathe'
+import devices from './devices'
 
 export default (pwa: PWAContext) => {
   if (!pwa.meta || !pwa.manifest) { return }
@@ -39,40 +41,11 @@ export default (pwa: PWAContext) => {
 
   }
   // TODO: Launch Screen Image (IOS)
-  if (pwa.manifest.iosSplashSreen) {
-    // Load from constat file
-    const devices = [
-      { width: 2732, height: 2048, pixelRatio: 2, orientation: 'landscape' },
-      { width: 1668, height: 2388, pixelRatio: 2, orientation: 'portrait' },
-      { width: 2388, height: 1668, pixelRatio: 2, orientation: 'landscape' },
-      { width: 1536, height: 2048, pixelRatio: 2, orientation: 'portrait' },
-      { width: 2048, height: 1536, pixelRatio: 2, orientation: 'landscape' },
-      { width: 1668, height: 2224, pixelRatio: 2, orientation: 'portrait' },
-      { width: 2224, height: 1668, pixelRatio: 2, orientation: 'landscape' },
-      { width: 1620, height: 2160, pixelRatio: 2, orientation: 'portrait' },
-      { width: 2160, height: 1620, pixelRatio: 2, orientation: 'landscape' },
-      { width: 1284, height: 2778, pixelRatio: 2, orientation: 'portrait' },
-      { width: 2778, height: 1284, pixelRatio: 3, orientation: 'landscape' },
-      { width: 1170, height: 2532, pixelRatio: 3, orientation: 'portrait' },
-      { width: 2532, height: 1170, pixelRatio: 3, orientation: 'landscape' },
-      { width: 1125, height: 2436, pixelRatio: 3, orientation: 'portrait' },
-      { width: 2436, height: 1125, pixelRatio: 3, orientation: 'landscape' },
-      { width: 1242, height: 2688, pixelRatio: 3, orientation: 'portrait' },
-      { width: 2688, height: 1242, pixelRatio: 3, orientation: 'landscape' },
-      { width: 828, height: 1792, pixelRatio: 2, orientation: 'portrait' },
-      { width: 1792, height: 828, pixelRatio: 2, orientation: 'landscape' },
-      { width: 1242, height: 2208, pixelRatio: 2, orientation: 'portrait' },
-      { width: 2208, height: 1242, pixelRatio: 2, orientation: 'landscape' },
-      { width: 750, height: 1334, pixelRatio: 2, orientation: 'portrait' },
-      { width: 1334, height: 750, pixelRatio: 2, orientation: 'landscape' },
-      { width: 640, height: 1136, pixelRatio: 2, orientation: 'portrait' },
-      { width: 1136, height: 640, pixelRatio: 2, orientation: 'landscape' }
-    ]
-    for (const device of devices) {
-      head.link.push(
-        { href: `${device.width}-${device.height}-splash-screen.png`, media: `(device-width: ${device.width / 2}px) and (device-height: ${device.height / 2}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: "apple-touch-startup-image" }
-      )
-    }
+  for (const device of devices) {
+    const href = join(pwa._assetsDir, pwa.icon.targetDir, `${ device.width }x${ device.height }-splash-screen.png`)
+    head.link.push(
+      { href , media: `(device-width: ${device.width / 2}px) and (device-height: ${device.height / 2}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: "apple-touch-startup-image" }
+    )
   }
 
   // Title
