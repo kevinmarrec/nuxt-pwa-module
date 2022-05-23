@@ -24,8 +24,7 @@ export interface MetaOptions {
   ogUrl: boolean | string
   twitterCard: string | undefined
   twitterSite: string | undefined
-  twitterCreator: string | undefined,
-
+  twitterCreator: string | undefined
 }
 
 export interface ManifestOptions {
