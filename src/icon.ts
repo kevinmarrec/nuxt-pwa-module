@@ -5,6 +5,8 @@ import hasha from 'hasha'
 import { join, resolve } from 'pathe'
 import { useNuxt } from '@nuxt/kit'
 import type { PWAContext } from './types'
+import devices from './devices'
+
 
 async function getFileHash (filePath: string): Promise<string> {
   const hash = await hasha.fromFile(filePath, { algorithm: 'md5' })
@@ -57,7 +59,8 @@ export default async (pwa: PWAContext) => {
   const iosSplashSreenOption = JSON.stringify({
     input: options.source,
     distDir: join(pwa._assetsDir, options.targetDir),
-    backgroundColor: pwa.manifest.background_color
+    backgroundColor: pwa.manifest.background_color,
+    devices
   })
 
   let generate: Promise<void>
