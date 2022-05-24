@@ -18,12 +18,9 @@ export default (pwa: PWAContext) => {
   // mobileApp (IOS)
   if (options.mobileAppIOS) {
     head.meta.push({ name: 'apple-mobile-web-app-capable', content: 'yes' })
-    for (const device of devices) {
-      const href = join(pwa._assetsDir, pwa.icon.targetDir, `${device.width}x${device.height}-splash-screen.png`)
-      head.link.push(
-        { href, media: `(device-width: ${device.width / device.pixelRatio}px) and (device-height: ${device.height / device.pixelRatio}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: "apple-touch-startup-image" }
-      )
-    }
+    head.link.push(...devices.map(device => (
+      { href: `${join(nuxt.options.app.buildAssetsDir, pwa.icon.targetDir, `${device.width}x${device.height}-splash-screen.png`)}`, media: `(device-width: ${device.width / device.pixelRatio}px) and (device-height: ${device.height / device.pixelRatio}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: "apple-touch-startup-image" }
+    )))
   }
 
   // statusBarStyle (IOS)
