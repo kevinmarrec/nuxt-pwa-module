@@ -44,7 +44,7 @@ export default (pwa: PWAContext) => {
   for (const device of devices) {
     const href = join(pwa._assetsDir, pwa.icon.targetDir, `${ device.width }x${ device.height }-splash-screen.png`)
     head.link.push(
-      { href , media: `(device-width: ${device.width / 2}px) and (device-height: ${device.height / 2}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: "apple-touch-startup-image" }
+      { href , media: `(device-width: ${device.width / device.pixelRatio}px) and (device-height: ${device.height / device.pixelRatio}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: "apple-touch-startup-image" }
     )
   }
 
