@@ -5,6 +5,7 @@ import manifest from './manifest'
 import meta from './meta'
 import workbox from './workbox'
 import type { PWAOptions, PWAContext } from './types'
+import devices from './devices'
 
 export default defineNuxtModule<PWAOptions>({
   meta: {
@@ -15,7 +16,13 @@ export default defineNuxtModule<PWAOptions>({
       source: null,
       sizes: [],
       fileName: 'icon.png',
-      targetDir: 'icons'
+      targetDir: 'icons',
+      splash: {
+        devices
+        // backgroundColor,
+        // dedicate icon
+        // ..
+      }
     },
     manifest: {
       name: process.env.npm_package_name!,
