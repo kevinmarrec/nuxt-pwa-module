@@ -52,18 +52,13 @@ export default async (pwa: PWAContext) => {
     input: options.source,
     distDir: join(pwa._assetsDir, options.targetDir),
     sizes: options.sizes,
-    suffix: iconSuffix
-  })
-
-  const iosSplashSreenOption = JSON.stringify({
-    input: options.source,
-    distDir: join(pwa._assetsDir, options.targetDir),
+    suffix: iconSuffix,
     backgroundColor: pwa.manifest.background_color,
+    mobileAppIOS: options.mobileAppIOS,
     devices
   })
 
   let generate: Promise<void>
-  let generateIosSplashScreen: Promise<void>
 
   // Start generation when Nuxt build dir (.nuxt) is available
   nuxt.hook('prepare:types', () => {
@@ -74,22 +69,12 @@ export default async (pwa: PWAContext) => {
       const child = fork(pwa._resolver.resolve('../lib/resize.cjs'), [resizeOptions])
       child.on('exit', (code: number) => code ? reject(code) : resolve())
     }).then(() => {
-      consola.success(`PWA icons generated in ${Date.now() - start} ms`)
-    })
-    generateIosSplashScreen = new Promise<void>((resolve, reject) => {
-      const child = fork(pwa._resolver.resolve('../lib/splash.cjs'), [iosSplashSreenOption])
-      child.on('exit', (code: number) => code ? reject(code) : resolve())
-    }).then(() => {
-      consola.success(`Splash Screen genrated in ${Date.now() - start} ms`)
+      consola.success(`PWA icons and splash-screen generated in ${Date.now() - start} ms`)
     })
   })
 
   // Ensure icons have been generated before Nitro build
   nuxt.hook('nitro:build:before', async () => {
     await generate
-
-    if (pwa.icon.mobileAppIOS) {
-      await generateIosSplashScreen
-    }
   })
 }
