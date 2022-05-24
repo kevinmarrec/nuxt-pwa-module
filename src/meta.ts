@@ -18,6 +18,12 @@ export default (pwa: PWAContext) => {
   // mobileApp (IOS)
   if (options.mobileAppIOS) {
     head.meta.push({ name: 'apple-mobile-web-app-capable', content: 'yes' })
+    for (const device of devices) {
+      const href = join(pwa._assetsDir, pwa.icon.targetDir, `${device.width}x${device.height}-splash-screen.png`)
+      head.link.push(
+        { href, media: `(device-width: ${device.width / device.pixelRatio}px) and (device-height: ${device.height / device.pixelRatio}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: "apple-touch-startup-image" }
+      )
+    }
   }
 
   // statusBarStyle (IOS)
@@ -39,13 +45,6 @@ export default (pwa: PWAContext) => {
       head.link.push({ rel: 'apple-touch-icon', href: iconBig.src, sizes: iconBig.sizes })
     }
 
-  }
-  // TODO: Launch Screen Image (IOS)
-  for (const device of devices) {
-    const href = join(pwa._assetsDir, pwa.icon.targetDir, `${ device.width }x${ device.height }-splash-screen.png`)
-    head.link.push(
-      { href , media: `(device-width: ${device.width / device.pixelRatio}px) and (device-height: ${device.height / device.pixelRatio}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: "apple-touch-startup-image" }
-    )
   }
 
   // Title

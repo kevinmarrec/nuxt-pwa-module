@@ -34,7 +34,7 @@ export default defineNuxtModule<PWAOptions>({
       description: process.env.npm_package_description!,
       favicon: true,
       mobileApp: true,
-      mobileAppIOS: true,
+      mobileAppIOS: false,
       appleStatusBarStyle: false,
       theme_color: undefined,
       lang: 'en',

@@ -85,6 +85,9 @@ export default async (pwa: PWAContext) => {
   // Ensure icons have been generated before Nitro build
   nuxt.hook('nitro:build:before', async () => {
     await generate
-    await generateIosSplashScreen
+
+    if (pwa.icon.mobileAppIOS) {
+      await generateIosSplashScreen
+    }
   })
 }
