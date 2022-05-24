@@ -15,7 +15,7 @@ export default defineNuxtModule<PWAOptions>({
       source: null,
       sizes: [],
       fileName: 'icon.png',
-      targetDir: 'icons',
+      targetDir: 'icons'
     },
     manifest: {
       name: process.env.npm_package_name!,

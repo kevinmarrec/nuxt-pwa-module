@@ -27,5 +27,3 @@ export default [
 ]
 
 // https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/#device-screen-sizes-and-orientations
-
-

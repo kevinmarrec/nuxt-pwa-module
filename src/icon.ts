@@ -7,7 +7,6 @@ import { useNuxt } from '@nuxt/kit'
 import type { PWAContext } from './types'
 import devices from './devices'
 
-
 async function getFileHash (filePath: string): Promise<string> {
   const hash = await hasha.fromFile(filePath, { algorithm: 'md5' })
   return hash.slice(0, 8)
