@@ -21,7 +21,7 @@ export default (pwa: PWAContext) => {
 
     // inject splash-screen based on devices list
     head.link.push(...devices.map(device => (
-      { href: `${join(nuxt.options.app.buildAssetsDir, pwa.icon.targetDir, `${device.width}x${device.height}-splash-screen.png`)}`, media: `(device-width: ${device.width / device.pixelRatio}px) and (device-height: ${device.height / device.pixelRatio}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: 'apple-touch-startup-image' }
+      { href: join(nuxt.options.app.buildAssetsDir, pwa.icon.targetDir, `${device.width}x${device.height}-splash-screen.png`), media: `(device-width: ${device.width / device.pixelRatio}px) and (device-height: ${device.height / device.pixelRatio}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: 'apple-touch-startup-image' }
     )))
   }
 
