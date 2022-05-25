@@ -5,6 +5,7 @@ import hasha from 'hasha'
 import { join, resolve } from 'pathe'
 import { useNuxt } from '@nuxt/kit'
 import type { PWAContext } from './types'
+import devices from './devices'
 
 async function getFileHash (filePath: string): Promise<string> {
   const hash = await hasha.fromFile(filePath, { algorithm: 'md5' })
@@ -45,6 +46,10 @@ export default async (pwa: PWAContext) => {
       // TODO: Find a solution to the 'any maskable' discouraged message from Lighthouse
       purpose: 'any maskable'
     })
+  }
+
+  if (options.splash.devices.length === 0) {
+    options.splash.devices = devices
   }
 
   const resizeOptions = JSON.stringify({

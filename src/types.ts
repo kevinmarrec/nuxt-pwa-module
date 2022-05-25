@@ -1,22 +1,15 @@
-enum Orientation {
-  landscape = 'landscape',
-  portrait = 'portrait'
-}
-
-export interface Device {
-  width: number,
-  height: number,
-  pixelRatio: number,
-  orientation: Orientation
-}
-
 export interface IconOptions {
   source: string | null
   fileName: string
   sizes: number[]
   targetDir: string,
   splash:{
-    devices: Device[]}
+    devices: Array<{
+      width: number,
+      height: number,
+      pixelRatio: number,
+      orientation: string
+    }>}
 }
 
 export interface MetaOptions {
