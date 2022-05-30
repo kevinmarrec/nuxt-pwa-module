@@ -23,7 +23,7 @@ Edit your `nuxt.config.ts` file to add PWA module :
 
 ```ts
 {
-  buildModules: [
+  modules: [
     '@kevinmarrec/nuxt-pwa'
   ]
 }
