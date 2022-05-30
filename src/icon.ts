@@ -5,7 +5,7 @@ import hasha from 'hasha'
 import { join, resolve } from 'pathe'
 import { useNuxt } from '@nuxt/kit'
 import type { PWAContext } from './types'
-import devices from './devices'
+import { defaultDevices, metaFromDevice } from './splash'
 
 async function getFileHash (filePath: string): Promise<string> {
   const hash = await hasha.fromFile(filePath, { algorithm: 'md5' })
@@ -36,13 +36,13 @@ export default async (pwa: PWAContext) => {
     options.sizes = defaultSizes
   }
 
-  // Add source icon hash as suffix for production
-  const iconSuffix = nuxt.options.dev ? '' : `.${await getFileHash(options.source)}`
+  // Hash as suffix for production
+  const hash = nuxt.options.dev ? '' : `.${await getFileHash(options.source)}`
 
   // Prepare manifest file
   for (const size of options.sizes) {
     pwa.manifest.icons.push({
-      src: join(nuxt.options.app.buildAssetsDir, options.targetDir, `${size}x${size}${iconSuffix}.png`),
+      src: join(nuxt.options.app.buildAssetsDir, options.targetDir, `${size}x${size}${hash}.png`),
       type: 'image/png',
       sizes: `${size}x${size}`,
       // TODO: Find a solution to the 'any maskable' discouraged message from Lighthouse
@@ -50,18 +50,32 @@ export default async (pwa: PWAContext) => {
     })
   }
 
-  if (options.splash.devices.length === 0) {
-    options.splash.devices = devices
+  const isSplashSupportEnabled = pwa.meta && pwa.meta.mobileAppIOS
+
+  // Prepare Splash Screen
+  if (isSplashSupportEnabled) {
+    if (!options.splash.backgroundColor) {
+      options.splash.backgroundColor = pwa.manifest.background_color
+    }
+
+    if (options.splash.devices.length === 0) {
+      options.splash.devices = defaultDevices
+    }
+
+    pwa._splashMetas = options.splash.devices.map(device =>
+      metaFromDevice(device, {
+        assetsDir: join(nuxt.options.app.buildAssetsDir, options.splash.targetDir),
+        hash
+      })
+    )
   }
 
-  const resizeOptions = JSON.stringify({
+  const generateOptions = JSON.stringify({
     input: options.source,
     distDir: join(pwa._assetsDir, options.targetDir),
     sizes: options.sizes,
-    suffix: iconSuffix,
-    backgroundColor: pwa.manifest.background_color,
-    mobileAppIOS: options.mobileAppIOS,
-    devices: options.splash.devices
+    splash: isSplashSupportEnabled ? options.splash : false,
+    hash
   })
 
   let generate: Promise<void>
@@ -72,14 +86,14 @@ export default async (pwa: PWAContext) => {
     const start = Date.now()
     // Generation Promise (generate in a child process using fork)
     generate = new Promise<void>((resolve, reject) => {
-      const child = fork(pwa._resolver.resolve('../lib/resize.cjs'), [resizeOptions])
+      const child = fork(pwa._resolver.resolve('../lib/generate.cjs'), [generateOptions])
       child.on('exit', (code: number) => code ? reject(code) : resolve())
     }).then(() => {
-      consola.success(`PWA icons and splash-screen generated in ${Date.now() - start} ms`)
+      consola.success(`PWA icons${isSplashSupportEnabled ? ' and splash screens ' : ' '}generated in ${Date.now() - start} ms`)
     })
   })
 
-  // Ensure icons have been generated before Nitro build
+  // Ensure icons (& splash screens) have been generated before Nitro build
   nuxt.hook('nitro:build:before', async () => {
     await generate
   })

@@ -1,15 +1,15 @@
+import type { Device } from './splash'
+
 export interface IconOptions {
   source: string | null
   fileName: string
   sizes: number[]
-  targetDir: string,
-  splash:{
-    devices: Array<{
-      width: number,
-      height: number,
-      pixelRatio: number,
-      orientation: string
-    }>}
+  targetDir: string
+  splash: {
+    backgroundColor: string | undefined
+    devices: Device[]
+    targetDir: string
+  }
 }
 
 export interface MetaOptions {
@@ -67,6 +67,7 @@ export interface PWAOptions {
 export interface PWAContext extends PWAOptions {
   _assetsDir: string
   _manifestMeta?: { rel: 'manifest', href: string }
+  _splashMetas?: Array<{ rel: 'apple-touch-startup-image', href: string, media: string }>
   _resolver: { resolve: (...path: string[]) => string }
 }
 
