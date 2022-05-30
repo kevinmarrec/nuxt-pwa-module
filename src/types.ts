@@ -2,7 +2,14 @@ export interface IconOptions {
   source: string | null
   fileName: string
   sizes: number[]
-  targetDir: string
+  targetDir: string,
+  splash:{
+    devices: Array<{
+      width: number,
+      height: number,
+      pixelRatio: number,
+      orientation: string
+    }>}
 }
 
 export interface MetaOptions {

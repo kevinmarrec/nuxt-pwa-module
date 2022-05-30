@@ -5,6 +5,7 @@ import hasha from 'hasha'
 import { join, resolve } from 'pathe'
 import { useNuxt } from '@nuxt/kit'
 import type { PWAContext } from './types'
+import devices from './devices'
 
 async function getFileHash (filePath: string): Promise<string> {
   const hash = await hasha.fromFile(filePath, { algorithm: 'md5' })
@@ -49,11 +50,18 @@ export default async (pwa: PWAContext) => {
     })
   }
 
+  if (options.splash.devices.length === 0) {
+    options.splash.devices = devices
+  }
+
   const resizeOptions = JSON.stringify({
     input: options.source,
     distDir: join(pwa._assetsDir, options.targetDir),
     sizes: options.sizes,
-    suffix: iconSuffix
+    suffix: iconSuffix,
+    backgroundColor: pwa.manifest.background_color,
+    mobileAppIOS: options.mobileAppIOS,
+    devices: options.splash.devices
   })
 
   let generate: Promise<void>
@@ -67,7 +75,7 @@ export default async (pwa: PWAContext) => {
       const child = fork(pwa._resolver.resolve('../lib/resize.cjs'), [resizeOptions])
       child.on('exit', (code: number) => code ? reject(code) : resolve())
     }).then(() => {
-      consola.success(`PWA icons generated in ${Date.now() - start} ms`)
+      consola.success(`PWA icons and splash-screen generated in ${Date.now() - start} ms`)
     })
   })
 

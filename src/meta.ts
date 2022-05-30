@@ -1,5 +1,7 @@
 import { useNuxt } from '@nuxt/kit'
+import { join } from 'pathe'
 import type { PWAContext } from './types'
+import devices from './devices'
 
 export default (pwa: PWAContext) => {
   if (!pwa.meta || !pwa.manifest) { return }
@@ -16,6 +18,11 @@ export default (pwa: PWAContext) => {
   // mobileApp (IOS)
   if (options.mobileAppIOS) {
     head.meta.push({ name: 'apple-mobile-web-app-capable', content: 'yes' })
+
+    // inject splash-screen based on devices list
+    head.link.push(...devices.map(device => (
+      { href: join(nuxt.options.app.buildAssetsDir, pwa.icon.targetDir, `${device.width}x${device.height}-splash-screen.png`), media: `(device-width: ${device.width / device.pixelRatio}px) and (device-height: ${device.height / device.pixelRatio}px) and (-webkit-device-pixel-ratio: ${device.pixelRatio}) and (orientation: ${device.orientation})`, rel: 'apple-touch-startup-image' }
+    )))
   }
 
   // statusBarStyle (IOS)
@@ -36,8 +43,6 @@ export default (pwa: PWAContext) => {
       head.link.push({ rel: 'shortcut icon', href: iconSmall.src })
       head.link.push({ rel: 'apple-touch-icon', href: iconBig.src, sizes: iconBig.sizes })
     }
-
-    // TODO: Launch Screen Image (IOS)
   }
 
   // Title
