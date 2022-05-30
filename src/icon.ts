@@ -52,7 +52,7 @@ export default async (pwa: PWAContext) => {
 
   const isSplashSupportEnabled = pwa.meta && pwa.meta.mobileAppIOS
 
-  // Prepare Splash Screen
+  // Prepare splash screens
   if (isSplashSupportEnabled) {
     if (!options.splash.backgroundColor) {
       options.splash.backgroundColor = pwa.manifest.background_color

@@ -17,7 +17,7 @@ export default (pwa: PWAContext) => {
   if (options.mobileAppIOS) {
     head.meta.push({ name: 'apple-mobile-web-app-capable', content: 'yes' })
 
-    // Inject Splash Screen metas
+    // Inject splash screen metas
     if (pwa._splashMetas) {
       head.link.push(...pwa._splashMetas)
     }
