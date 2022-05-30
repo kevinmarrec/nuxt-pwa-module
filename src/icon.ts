@@ -11,6 +11,8 @@ async function getFileHash (filePath: string): Promise<string> {
   return hash.slice(0, 8)
 }
 
+export const defaultSizes = [64, 120, 144, 152, 192, 384, 512]
+
 export default async (pwa: PWAContext) => {
   if (!pwa.icon || !pwa.manifest) { return }
 
@@ -30,7 +32,7 @@ export default async (pwa: PWAContext) => {
   }
 
   if (options.sizes.length === 0) {
-    options.sizes = [64, 120, 144, 152, 192, 384, 512]
+    options.sizes = defaultSizes
   }
 
   // Add source icon hash as suffix for production
@@ -56,8 +58,8 @@ export default async (pwa: PWAContext) => {
 
   let generate: Promise<void>
 
-  // Start generation when Nuxt build dir (.nuxt) is available
-  nuxt.hook('prepare:types', () => {
+  // Start generation parallel to Nuxt build
+  nuxt.hook('build:before', () => {
     // Track time
     const start = Date.now()
     // Generation Promise (generate in a child process using fork)
