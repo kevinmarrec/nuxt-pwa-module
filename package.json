@@ -31,18 +31,23 @@
     "dev": "nuxi dev example",
     "example:build": "nuxi build example",
     "example:start": "node example/.output/server/index.mjs",
-    "lint": "eslint --ext js,ts,vue ."
+    "lint": "eslint --ext js,ts,vue .",
+    "test": "vitest --run --reporter verbose",
+    "test:coverage": "pnpm test -- --coverage"
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.1.7",
+    "@nuxt/test-utils": "^3.0.0-rc.3",
     "@nuxtjs/eslint-config-typescript": "^10.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/sharp": "^0.30.2",
     "@unocss/nuxt": "^0.34.0",
+    "c8": "^7.11.3",
     "eslint": "^8.16.0",
     "nuxt": "^3.0.0-rc.3",
     "standard-version": "^9.5.0",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "vitest": "^0.13.0"
   },
   "dependencies": {
     "hasha": "^5.2.2",

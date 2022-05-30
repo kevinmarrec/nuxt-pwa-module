@@ -1,6 +1,9 @@
 # Dependencies
 node_modules
 
+# Coverage
+coverage
+
 # Logs
 *.log*
 
