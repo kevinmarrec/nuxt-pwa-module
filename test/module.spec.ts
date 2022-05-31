@@ -3,6 +3,7 @@ import { join, relative } from 'pathe'
 import { describe, it, expect } from 'vitest'
 import { setup, useTestContext } from '@nuxt/test-utils'
 import { defaultSizes } from '../src/icon'
+import { defaultDevices } from '../src/splash'
 
 async function getClientFiles () {
   const { buildDir } = useTestContext().nuxt!.options
@@ -14,13 +15,16 @@ async function getClientFiles () {
 describe('module', async () => {
   await setup({})
 
-  it('generate icons', async () => {
+  it('generate icons & splash screens', async () => {
     expect(await getClientFiles()).toEqual(
-      expect.arrayContaining(
-        defaultSizes.map(size =>
+      expect.arrayContaining([
+        ...defaultSizes.map(size =>
           expect.stringMatching(new RegExp(`icons/${size}x${size}.*\\.png`))
+        ),
+        ...defaultDevices.map(device =>
+          expect.stringMatching(new RegExp(`splash/${device.width}x${device.height}.*\\.png`))
         )
-      )
+      ])
     )
   })
 

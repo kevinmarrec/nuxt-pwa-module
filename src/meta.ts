@@ -16,6 +16,11 @@ export default (pwa: PWAContext) => {
   // mobileApp (IOS)
   if (options.mobileAppIOS) {
     head.meta.push({ name: 'apple-mobile-web-app-capable', content: 'yes' })
+
+    // Inject splash screen metas
+    if (pwa._splashMetas) {
+      head.link.push(...pwa._splashMetas)
+    }
   }
 
   // statusBarStyle (IOS)
@@ -36,8 +41,6 @@ export default (pwa: PWAContext) => {
       head.link.push({ rel: 'shortcut icon', href: iconSmall.src })
       head.link.push({ rel: 'apple-touch-icon', href: iconBig.src, sizes: iconBig.sizes })
     }
-
-    // TODO: Launch Screen Image (IOS)
   }
 
   // Title

@@ -2,5 +2,10 @@ import { defineNuxtConfig } from 'nuxt'
 import PWA from '../../src/module'
 
 export default defineNuxtConfig({
-  modules: [PWA]
+  modules: [PWA],
+  pwa: {
+    meta: {
+      mobileAppIOS: true
+    }
+  }
 })
