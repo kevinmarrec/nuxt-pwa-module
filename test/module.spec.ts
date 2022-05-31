@@ -7,7 +7,7 @@ import { defaultDevices } from '../src/splash'
 
 async function getClientFiles () {
   const { buildDir } = useTestContext().nuxt!.options
-  const clientDist = join(buildDir, 'dist/client')
+  const clientDist = join(buildDir, 'pwa')
   const files = await globby(clientDist)
   return files.map(path => relative(clientDist, path))
 }
@@ -19,10 +19,10 @@ describe('module', async () => {
     expect(await getClientFiles()).toEqual(
       expect.arrayContaining([
         ...defaultSizes.map(size =>
-          expect.stringMatching(new RegExp(`icons/${size}x${size}.*\\.png`))
+          expect.stringMatching(new RegExp(`assets/icons/${size}x${size}.*\\.png`))
         ),
         ...defaultDevices.map(device =>
-          expect.stringMatching(new RegExp(`splash/${device.width}x${device.height}.*\\.png`))
+          expect.stringMatching(new RegExp(`assets/splash/${device.width}x${device.height}.*\\.png`))
         )
       ])
     )
@@ -31,7 +31,7 @@ describe('module', async () => {
   it('generate manifest', async () => {
     expect(await getClientFiles()).toEqual(
       expect.arrayContaining([
-        expect.stringMatching(/pwa\.manifest.*\.json/)
+        expect.stringMatching(/manifest.*\.json/)
       ])
     )
   })

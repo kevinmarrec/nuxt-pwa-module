@@ -11,18 +11,18 @@ export default (pwa: PWAContext) => {
   const manifestJson = JSON.stringify(pwa.manifest, null, 2)
 
   const filename = nuxt.options.dev
-    ? 'pwa.manifest.json'
-    : `pwa.manifest.${hasha(manifestJson, { algorithm: 'md5' }).slice(0, 8)}.json`
+    ? 'manifest.json'
+    : `manifest.${hasha(manifestJson, { algorithm: 'md5' }).slice(0, 8)}.json`
 
   addTemplate({
     filename,
-    dst: join(pwa._assetsDir, filename),
+    dst: join(pwa._rootDir, filename),
     write: true,
     getContents: () => manifestJson
   })
 
   pwa._manifestMeta = {
     rel: 'manifest',
-    href: join(nuxt.options.app.buildAssetsDir, filename)
+    href: `/${filename}`
   }
 }

@@ -65,7 +65,8 @@ export default defineNuxtModule<PWAOptions>({
     const pwa: PWAContext = {
       ...options,
       // Nitro serve assets from .nuxt/dist/client by default
-      _assetsDir: join(nuxt.options.buildDir, 'dist/client'),
+      _rootDir: join(nuxt.options.buildDir, 'pwa'),
+      _assetsDir: join(nuxt.options.buildDir, 'pwa/assets'),
       _resolver: createResolver(import.meta.url)
     }
 
@@ -75,5 +76,11 @@ export default defineNuxtModule<PWAOptions>({
     manifest(pwa)
     meta(pwa)
     workbox(pwa)
+
+    // Use nitro public assets to serve `sw.js`, `manifest.json` and assets (icons / splash screens)
+    const { nitro, app: { buildAssetsDir } } = nuxt.options
+    nitro.publicAssets = nitro.publicAssets || []
+    nitro.publicAssets.push({ dir: pwa._rootDir, baseURL: '/' })
+    nitro.publicAssets.push({ dir: pwa._assetsDir, baseURL: buildAssetsDir })
   }
 })

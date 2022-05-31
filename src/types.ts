@@ -65,6 +65,7 @@ export interface PWAOptions {
 }
 
 export interface PWAContext extends PWAOptions {
+  _rootDir: string
   _assetsDir: string
   _manifestMeta?: { rel: 'manifest', href: string }
   _splashMetas?: Array<{ rel: 'apple-touch-startup-image', href: string, media: string }>
