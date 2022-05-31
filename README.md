@@ -2,6 +2,8 @@
 
 > Zero config [PWA](https://web.dev/progressive-web-apps) solution for [Nuxt 3](https://v3.nuxtjs.org)
 
+![image](https://user-images.githubusercontent.com/25272043/171139116-b0137f28-f29d-429d-a778-9e8bbe530331.png)
+
 ## State of official module
 
 This module is **unofficial** but aims to become the next iteration of the [official Nuxt PWA module](https://github.com/nuxt-community/pwa-module).
