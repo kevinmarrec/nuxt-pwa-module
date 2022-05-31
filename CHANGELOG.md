@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.1.0...v0.2.0) (2022-05-31)
+
+
+### Features
+
+* splash screen support ([#6](https://github.com/kevinmarrec/nuxt-pwa-module/issues/6)) ([970c5f8](https://github.com/kevinmarrec/nuxt-pwa-module/commit/970c5f89a7b6564580b36ee61052caeeeb0fb6ad))
+
 ## [0.1.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.0.2...v0.1.0) (2022-05-21)
 
 
