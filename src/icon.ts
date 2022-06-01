@@ -4,7 +4,7 @@ import consola from 'consola'
 import hasha from 'hasha'
 import { join, resolve } from 'pathe'
 import { useNuxt } from '@nuxt/kit'
-import type { PWAContext } from './types'
+import type { PWAContext, ManifestIcon } from './types'
 import { defaultDevices, metaFromDevice } from './splash'
 
 async function getFileHash (filePath: string): Promise<string> {
@@ -41,13 +41,14 @@ export default async (pwa: PWAContext) => {
 
   // Prepare manifest file
   for (const size of options.sizes) {
-    pwa.manifest.icons.push({
+    const icon: ManifestIcon = {
       src: join(nuxt.options.app.buildAssetsDir, options.targetDir, `${size}x${size}${hash}.png`),
       type: 'image/png',
-      sizes: `${size}x${size}`,
-      // TODO: Find a solution to the 'any maskable' discouraged message from Lighthouse
-      purpose: 'any maskable'
-    })
+      sizes: `${size}x${size}`
+    }
+
+    pwa.manifest.icons.push({ ...icon, purpose: 'any' })
+    pwa.manifest.icons.push({ ...icon, purpose: 'maskable' })
   }
 
   const isSplashSupportEnabled = pwa.meta && pwa.meta.mobileAppIOS

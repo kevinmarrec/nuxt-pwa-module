@@ -34,6 +34,13 @@ export interface MetaOptions {
   twitterCreator: string | undefined
 }
 
+export interface ManifestIcon {
+  src: string
+  type: string
+  sizes: string
+  purpose?: string
+}
+
 export interface ManifestOptions {
   name: string
   short_name: string
@@ -43,12 +50,7 @@ export interface ManifestOptions {
   display: string
   background_color: string
   theme_color: string
-  icons: Array<{
-    src: string
-    type: string
-    sizes: String
-    purpose?: string
-  }>
+  icons: ManifestIcon[]
 }
 
 export interface WorkboxOptions {
