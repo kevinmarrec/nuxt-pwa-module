@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.2.1...v0.2.2) (2022-06-01)
+
+
+### Bug Fixes
+
+* adjust manifest icons purposes ([f01b0a5](https://github.com/kevinmarrec/nuxt-pwa-module/commit/f01b0a5099bf78731d0e7195b4bb0d093fce97ea)), closes [#8](https://github.com/kevinmarrec/nuxt-pwa-module/issues/8)
+
 ### [0.2.1](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.2.0...v0.2.1) (2022-05-31)
 
 
