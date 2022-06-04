@@ -23,6 +23,6 @@ export default (pwa: PWAContext) => {
 
   pwa._manifestMeta = {
     rel: 'manifest',
-    href: `/${filename}`
+    href: join(nuxt.options.app.baseURL, filename)
   }
 }

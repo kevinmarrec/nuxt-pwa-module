@@ -42,7 +42,12 @@ export default async (pwa: PWAContext) => {
   // Prepare manifest file
   for (const size of options.sizes) {
     const icon: ManifestIcon = {
-      src: join(nuxt.options.app.buildAssetsDir, options.targetDir, `${size}x${size}${hash}.png`),
+      src: join(
+        nuxt.options.app.baseURL,
+        nuxt.options.app.buildAssetsDir,
+        options.targetDir,
+        `${size}x${size}${hash}.png`
+      ),
       type: 'image/png',
       sizes: `${size}x${size}`
     }
@@ -65,7 +70,11 @@ export default async (pwa: PWAContext) => {
 
     pwa._splashMetas = options.splash.devices.map(device =>
       metaFromDevice(device, {
-        assetsDir: join(nuxt.options.app.buildAssetsDir, options.splash.targetDir),
+        assetsDir: join(
+          nuxt.options.app.baseURL,
+          nuxt.options.app.buildAssetsDir,
+          options.splash.targetDir
+        ),
         hash
       })
     )
