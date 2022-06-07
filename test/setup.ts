@@ -20,7 +20,8 @@ function useContext () {
 }
 
 function makeWithHashRegex (path: string): RegExp {
-  return new RegExp(path.replace(/\.(.*)$/, '(\\..*)?\\.$1'))
+  // eslint-disable-next-line no-useless-escape
+  return new RegExp(path.replace(/\./g, '\.').replace(/\.([^\.]*)$/, '(\..{8})?\.$1'))
 }
 
 expect.extend({

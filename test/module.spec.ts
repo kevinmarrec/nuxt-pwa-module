@@ -11,7 +11,9 @@ describe('module', async () => {
   it('generate & serve icons (+ splash screens)', async () => {
     for (const size of defaultSizes) {
       await expect(`assets/icons/${size}x${size}.png`).toBeGenerated()
+      await expect(`assets/icons/${size}x${size}.maskable.png`).toBeGenerated()
       await expect(`assets/icons/${size}x${size}.png`).toBeServed()
+      await expect(`assets/icons/${size}x${size}.maskable.png`).toBeServed()
     }
 
     for (const device of defaultDevices) {

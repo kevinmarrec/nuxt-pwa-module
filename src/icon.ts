@@ -13,6 +13,22 @@ async function getFileHash (filePath: string): Promise<string> {
   return hash.slice(0, 8)
 }
 
+interface ManifestIconMakerOptions {
+  iconsDir: string
+  size: number
+  purpose: NonNullable<ManifestIcon['purpose']>
+  hash: string
+}
+
+function makeManifestIcon ({ iconsDir, size, purpose, hash }: ManifestIconMakerOptions): ManifestIcon {
+  return {
+    src: joinURL(iconsDir, `${size}x${size}${purpose === 'maskable' ? '.maskable' : ''}${hash}.png`),
+    type: 'image/png',
+    sizes: `${size}x${size}`,
+    purpose
+  }
+}
+
 export const defaultSizes = [64, 120, 144, 152, 192, 384, 512]
 
 export default async (pwa: PWAContext) => {
@@ -40,21 +56,16 @@ export default async (pwa: PWAContext) => {
   // Hash as suffix for production
   const hash = nuxt.options.dev ? '' : `.${await getFileHash(options.source)}`
 
+  const iconsDir = joinURL(
+    nuxt.options.app.baseURL,
+    nuxt.options.app.buildAssetsDir,
+    options.targetDir
+  )
+
   // Prepare manifest file
   for (const size of options.sizes) {
-    const icon: ManifestIcon = {
-      src: joinURL(
-        nuxt.options.app.baseURL,
-        nuxt.options.app.buildAssetsDir,
-        options.targetDir,
-        `${size}x${size}${hash}.png`
-      ),
-      type: 'image/png',
-      sizes: `${size}x${size}`
-    }
-
-    pwa.manifest.icons.push({ ...icon, purpose: 'any' })
-    pwa.manifest.icons.push({ ...icon, purpose: 'maskable' })
+    pwa.manifest.icons.push(makeManifestIcon({ hash, iconsDir, size, purpose: 'any' }))
+    pwa.manifest.icons.push(makeManifestIcon({ hash, iconsDir, size, purpose: 'maskable' }))
   }
 
   const isSplashSupportEnabled = pwa.meta && pwa.meta.mobileAppIOS
@@ -85,6 +96,7 @@ export default async (pwa: PWAContext) => {
     input: options.source,
     distDir: join(pwa._assetsDir, options.targetDir),
     sizes: options.sizes,
+    maskablePadding: options.maskablePadding,
     splash: isSplashSupportEnabled ? options.splash : false,
     hash
   })

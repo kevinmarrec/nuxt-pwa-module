@@ -4,6 +4,7 @@ export interface IconOptions {
   source: string | null
   fileName: string
   sizes: number[]
+  maskablePadding: number
   targetDir: string
   splash: {
     backgroundColor: string | undefined
@@ -38,7 +39,7 @@ export interface ManifestIcon {
   src: string
   type: string
   sizes: string
-  purpose?: string
+  purpose: 'any' | 'maskable'
 }
 
 export interface ManifestOptions {
