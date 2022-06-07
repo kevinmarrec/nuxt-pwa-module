@@ -1,4 +1,4 @@
-import { join } from 'pathe'
+import { joinURL } from 'ufo'
 import { defineNuxtPlugin, useRuntimeConfig } from '#app'
 
 export default defineNuxtPlugin(() => {
@@ -7,7 +7,7 @@ export default defineNuxtPlugin(() => {
 
     window.addEventListener('load', () => {
       navigator.serviceWorker.register(
-        join(baseURL, 'sw.js')
+        joinURL(baseURL, 'sw.js')
       )
     })
   }
