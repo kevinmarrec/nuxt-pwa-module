@@ -12,6 +12,9 @@ export default defineNuxtConfig({
     meta: {
       // Generate splash screens for iOS
       mobileAppIOS: true
+    },
+    workbox: {
+      enabled: true
     }
   },
   unocss: {
