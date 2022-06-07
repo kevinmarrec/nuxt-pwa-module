@@ -12,7 +12,6 @@ interface CustomMatchers {
 declare global {
   namespace Vi {
     interface Assertion extends CustomMatchers {}
-    interface AsymmetricMatchersContaining extends CustomMatchers {}
   }
 }
 
