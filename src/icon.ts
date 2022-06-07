@@ -3,6 +3,7 @@ import { fork } from 'node:child_process'
 import consola from 'consola'
 import hasha from 'hasha'
 import { join, resolve } from 'pathe'
+import { joinURL } from 'ufo'
 import { useNuxt } from '@nuxt/kit'
 import type { PWAContext, ManifestIcon } from './types'
 import { defaultDevices, metaFromDevice } from './splash'
@@ -42,7 +43,12 @@ export default async (pwa: PWAContext) => {
   // Prepare manifest file
   for (const size of options.sizes) {
     const icon: ManifestIcon = {
-      src: join(nuxt.options.app.buildAssetsDir, options.targetDir, `${size}x${size}${hash}.png`),
+      src: joinURL(
+        nuxt.options.app.baseURL,
+        nuxt.options.app.buildAssetsDir,
+        options.targetDir,
+        `${size}x${size}${hash}.png`
+      ),
       type: 'image/png',
       sizes: `${size}x${size}`
     }
@@ -65,7 +71,11 @@ export default async (pwa: PWAContext) => {
 
     pwa._splashMetas = options.splash.devices.map(device =>
       metaFromDevice(device, {
-        assetsDir: join(nuxt.options.app.buildAssetsDir, options.splash.targetDir),
+        assetsDir: joinURL(
+          nuxt.options.app.baseURL,
+          nuxt.options.app.buildAssetsDir,
+          options.splash.targetDir
+        ),
         hash
       })
     )

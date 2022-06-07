@@ -1,5 +1,6 @@
-import { join } from 'pathe'
 import hasha from 'hasha'
+import { join } from 'pathe'
+import { joinURL } from 'ufo'
 import { addTemplate, useNuxt } from '@nuxt/kit'
 import { PWAContext } from './types'
 
@@ -23,6 +24,6 @@ export default (pwa: PWAContext) => {
 
   pwa._manifestMeta = {
     rel: 'manifest',
-    href: `/${filename}`
+    href: joinURL(nuxt.options.app.baseURL, filename)
   }
 }

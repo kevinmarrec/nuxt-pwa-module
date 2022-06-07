@@ -1,42 +1,32 @@
-import { globby } from 'globby'
-import { join, relative } from 'pathe'
+import { setup } from '@nuxt/test-utils'
 import { describe, it, expect } from 'vitest'
-import { setup, useTestContext } from '@nuxt/test-utils'
 import { defaultSizes } from '../src/icon'
 import { defaultDevices } from '../src/splash'
 
-async function getClientFiles () {
-  const { buildDir } = useTestContext().nuxt!.options
-  const clientDist = join(buildDir, 'pwa')
-  const files = await globby(clientDist)
-  return files.map(path => relative(clientDist, path))
-}
+import './setup'
 
 describe('module', async () => {
   await setup({})
 
-  it('generate icons & splash screens', async () => {
-    expect(await getClientFiles()).toEqual(
-      expect.arrayContaining([
-        ...defaultSizes.map(size =>
-          expect.stringMatching(new RegExp(`assets/icons/${size}x${size}.*\\.png`))
-        ),
-        ...defaultDevices.map(device =>
-          expect.stringMatching(new RegExp(`assets/splash/${device.width}x${device.height}.*\\.png`))
-        )
-      ])
-    )
+  it('generate & serve icons (+ splash screens)', async () => {
+    for (const size of defaultSizes) {
+      await expect(`assets/icons/${size}x${size}.png`).toBeGenerated()
+      await expect(`assets/icons/${size}x${size}.png`).toBeServed()
+    }
+
+    for (const device of defaultDevices) {
+      await expect(`assets/splash/${device.width}x${device.height}.png`).toBeGenerated()
+      await expect(`assets/splash/${device.width}x${device.height}.png`).toBeServed()
+    }
   })
 
-  it('generate manifest', async () => {
-    expect(await getClientFiles()).toEqual(
-      expect.arrayContaining([
-        expect.stringMatching(/manifest.*\.json/)
-      ])
-    )
+  it('generate & serve manifest', async () => {
+    await expect('manifest.json').toBeGenerated()
+    await expect('manifest.json').toBeServed()
   })
 
-  it('generate worker', async () => {
-    expect(await getClientFiles()).toContain('sw.js')
+  it('generate & serve worker', async () => {
+    await expect('sw.js').toBeGenerated()
+    await expect('sw.js').toBeServed()
   })
 })
