@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.2.2...v0.3.0) (2022-06-07)
+
+
+### Features
+
+* padded maskable icons ([8dcdefe](https://github.com/kevinmarrec/nuxt-pwa-module/commit/8dcdefe5e9bf71f64349ac4627e61e75cc96093c)), closes [#10](https://github.com/kevinmarrec/nuxt-pwa-module/issues/10)
+
+
+### Bug Fixes
+
+* use baseURL for sw/manifest/icons/splash ([#14](https://github.com/kevinmarrec/nuxt-pwa-module/issues/14)) ([aa01db1](https://github.com/kevinmarrec/nuxt-pwa-module/commit/aa01db1679eee3141d8576b24a62b3779f99960e))
+* **workbox:** fix worker when using `pages` folder ([52ecdb9](https://github.com/kevinmarrec/nuxt-pwa-module/commit/52ecdb9e420bbd596389ca7bb5533ca4a10d1e32)), closes [#11](https://github.com/kevinmarrec/nuxt-pwa-module/issues/11)
+
 ### [0.2.2](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.2.1...v0.2.2) (2022-06-01)
 
 
