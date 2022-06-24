@@ -13,12 +13,14 @@ specifiers:
   nuxt: ^3.0.0-rc.3
   sharp: ^0.30.6
   standard-version: ^9.5.0
+  std-env: ^3.1.1
   typescript: ^4.7.3
   vitest: ^0.13.1
 
 dependencies:
   hasha: 5.2.2
   sharp: 0.30.6
+  std-env: 3.1.1
 
 devDependencies:
   '@nuxt/module-builder': 0.1.7
@@ -7022,7 +7024,6 @@ packages:
 
   /std-env/3.1.1:
     resolution: {integrity: sha512-/c645XdExBypL01TpFKiG/3RAa/Qmu+zRi0MwAmrdEkwHNuN0ebo8ccAXBBDa5Z0QOJgBskUIbuCK91x0sCVEw==}
-    dev: true
 
   /strict-uri-encode/2.0.0:
     resolution: {integrity: sha1-ucczDHBChi9rFC3CdLvMWGbONUY=}

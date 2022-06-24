@@ -2,6 +2,7 @@ import { existsSync } from 'node:fs'
 import { fork } from 'node:child_process'
 import consola from 'consola'
 import { join, resolve } from 'pathe'
+import { provider } from 'std-env'
 import { joinURL } from 'ufo'
 import { useNuxt } from '@nuxt/kit'
 import type { PWAContext } from '../types'
@@ -12,6 +13,13 @@ export const defaultSizes = [64, 120, 144, 152, 192, 384, 512]
 
 export default async (pwa: PWAContext) => {
   if (!pwa.icon || !pwa.manifest) { return }
+
+  if (provider === 'stackblitz') {
+    // eslint-disable-next-line no-console
+    return console.warn(
+      '[PWA] Disabling icon generation as `sharp` is not currently supported on StackBlitz.'
+    )
+  }
 
   const options = pwa.icon
   const nuxt = useNuxt()
