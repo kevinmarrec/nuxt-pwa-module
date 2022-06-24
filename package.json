@@ -58,5 +58,6 @@
       "consola",
       "pathe"
     ]
-  }
+  },
+  "packageManager": "pnpm@7.3.0"
 }
