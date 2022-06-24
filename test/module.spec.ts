@@ -1,7 +1,7 @@
 import { setup } from '@nuxt/test-utils'
 import { describe, it, expect } from 'vitest'
 import { defaultSizes } from '../src/icon'
-import { defaultDevices } from '../src/splash'
+import { defaultDevices } from '../src/icon/splash'
 
 import './setup'
 

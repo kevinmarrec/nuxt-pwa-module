@@ -5,19 +5,13 @@ import hasha from 'hasha'
 import { join, resolve } from 'pathe'
 import { joinURL } from 'ufo'
 import { useNuxt } from '@nuxt/kit'
-import type { PWAContext, ManifestIcon } from './types'
+import type { PWAContext } from '../types'
+import type { ManifestIcon, ManifestIconMakerOptions } from './types'
 import { defaultDevices, metaFromDevice } from './splash'
 
 async function getFileHash (filePath: string): Promise<string> {
   const hash = await hasha.fromFile(filePath, { algorithm: 'md5' })
   return hash.slice(0, 8)
-}
-
-interface ManifestIconMakerOptions {
-  iconsDir: string
-  size: number
-  purpose: NonNullable<ManifestIcon['purpose']>
-  hash: string
 }
 
 function makeManifestIcon ({ iconsDir, size, purpose, hash }: ManifestIconMakerOptions): ManifestIcon {

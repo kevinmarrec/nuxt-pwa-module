@@ -1,11 +1,5 @@
 import { join } from 'pathe'
-
-export interface Device {
-  width: number
-  height: number
-  pixelRatio: number
-  orientation: 'portrait' | 'landscape'
-}
+import type { Device } from './types'
 
 // https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/#device-screen-sizes-and-orientations
 

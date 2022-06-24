@@ -1,64 +1,7 @@
-import type { Device } from './splash'
-
-export interface IconOptions {
-  source: string | null
-  fileName: string
-  sizes: number[]
-  maskablePadding: number
-  targetDir: string
-  splash: {
-    backgroundColor: string | undefined
-    devices: Device[]
-    targetDir: string
-  }
-}
-
-export interface MetaOptions {
-  name: string
-  author: string
-  description: string
-  favicon: boolean
-  mobileApp: boolean
-  mobileAppIOS: boolean
-  appleStatusBarStyle: boolean
-  theme_color: string | undefined
-  lang: string
-  ogType: string
-  ogSiteName: boolean | string
-  ogTitle: boolean | string
-  ogDescription: boolean | string
-  ogImage: boolean | string | { path: string, width?: number, height?: number, type?: string }
-  ogHost: string | undefined
-  ogUrl: boolean | string
-  twitterCard: string | undefined
-  twitterSite: string | undefined
-  twitterCreator: string | undefined
-}
-
-export interface ManifestIcon {
-  src: string
-  type: string
-  sizes: string
-  purpose: 'any' | 'maskable'
-}
-
-export interface ManifestOptions {
-  name: string
-  short_name: string
-  description: string
-  lang: string
-  start_url: string
-  display: string
-  background_color: string
-  theme_color: string
-  icons: ManifestIcon[]
-}
-
-export interface WorkboxOptions {
-  enabled: boolean
-  workboxVersion: string
-  workboxUrl: string | null
-}
+import { IconOptions } from './icon/types'
+import { MetaOptions } from './meta/types'
+import { ManifestOptions } from './manifest/types'
+import { WorkboxOptions } from './workbox/types'
 
 export interface PWAOptions {
   icon: IconOptions | false

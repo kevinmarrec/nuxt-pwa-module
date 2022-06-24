@@ -2,7 +2,7 @@ import { addTemplate, useNuxt } from '@nuxt/kit'
 import consola from 'consola'
 import { join } from 'pathe'
 import { joinURL } from 'ufo'
-import type { PWAContext } from './types'
+import type { PWAContext } from '../types'
 
 export default (pwa: PWAContext) => {
   if (!pwa.workbox || !pwa.workbox.enabled) { return }
