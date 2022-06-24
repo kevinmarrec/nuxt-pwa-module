@@ -99,4 +99,4 @@ Published under the [MIT License](./LICENCE).
 [github-actions-src]: https://img.shields.io/github/workflow/status/kevinmarrec/nuxt-pwa-module/CI?style=flat-square
 [github-actions-href]: https://github.com/kevinmarrec/nuxt-pwa-module/actions?query=workflow%3Aci
 [codecov-src]: https://img.shields.io/codecov/c/gh/kevinmarrec/nuxt-pwa-module/main?style=flat-square
-[codecov-href]: https://codecov.io/gh/kevinmarrec/nuxt-pwa
+[codecov-href]: https://codecov.io/gh/kevinmarrec/nuxt-pwa-module
