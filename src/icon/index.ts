@@ -1,27 +1,12 @@
 import { existsSync } from 'node:fs'
 import { fork } from 'node:child_process'
 import consola from 'consola'
-import hasha from 'hasha'
 import { join, resolve } from 'pathe'
 import { joinURL } from 'ufo'
 import { useNuxt } from '@nuxt/kit'
 import type { PWAContext } from '../types'
-import type { ManifestIcon, ManifestIconMakerOptions } from './types'
 import { defaultDevices, metaFromDevice } from './splash'
-
-async function getFileHash (filePath: string): Promise<string> {
-  const hash = await hasha.fromFile(filePath, { algorithm: 'md5' })
-  return hash.slice(0, 8)
-}
-
-function makeManifestIcon ({ iconsDir, size, purpose, hash }: ManifestIconMakerOptions): ManifestIcon {
-  return {
-    src: joinURL(iconsDir, `${size}x${size}${purpose === 'maskable' ? '.maskable' : ''}${hash}.png`),
-    type: 'image/png',
-    sizes: `${size}x${size}`,
-    purpose
-  }
-}
+import { getFileHash, makeManifestIcon } from './utils'
 
 export const defaultSizes = [64, 120, 144, 152, 192, 384, 512]
 
@@ -44,7 +29,7 @@ export default async (pwa: PWAContext) => {
   }
 
   if (options.sizes.length === 0) {
-    options.sizes = defaultSizes
+    options.sizes = [64, 120, 144, 152, 192, 384, 512]
   }
 
   // Hash as suffix for production
