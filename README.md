@@ -84,13 +84,13 @@ pnpm example:build
 pnpm example:start
 ```
 
-<!-- Badges -->
-
 ## License
 
 Made with ❤️
 
 Published under the [MIT License](./LICENCE).
+
+<!-- Badges -->
 
 [npm-version-src]: https://img.shields.io/npm/v/@kevinmarrec/nuxt-pwa?style=flat-square
 [npm-version-href]: https://npmjs.com/package/@kevinmarrec/nuxt-pwa
