@@ -1,5 +1,5 @@
 {
-  "name": "@kevinmarrec/nuxt-pwa",
+  "name": "@escral/nuxt-pwa",
   "version": "0.3.1",
   "description": "Zero config PWA solution for Nuxt 3",
   "author": "Kevin Marrec <kevin@marrec.io>",
