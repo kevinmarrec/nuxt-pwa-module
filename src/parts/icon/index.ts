@@ -5,11 +5,12 @@ import { join, resolve } from 'pathe'
 import { provider } from 'std-env'
 import { joinURL } from 'ufo'
 import { useNuxt } from '@nuxt/kit'
-import type { PWAContext } from '../types'
+import type { PWAContext } from '../../types'
 import { defaultDevices, metaFromDevice } from './splash'
 import { getFileHash, makeManifestIcon } from './utils'
 
 export const defaultSizes = [64, 120, 144, 152, 192, 384, 512]
+
 
 export default async (pwa: PWAContext) => {
   if (!pwa.icon || !pwa.manifest) { return }
