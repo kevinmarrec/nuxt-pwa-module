@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.4.0...v0.4.1) (2022-07-22)
+
+
+### Bug Fixes
+
+* **manifest:** move server handler to runtime ([73ee968](https://github.com/kevinmarrec/nuxt-pwa-module/commit/73ee9689ae0114d0b4f3779b2c26e58b97900bd0)), closes [#22](https://github.com/kevinmarrec/nuxt-pwa-module/issues/22)
+
 ## [0.4.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.3.1...v0.4.0) (2022-07-22)
 
 
