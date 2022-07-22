@@ -11,7 +11,6 @@ import { getFileHash, makeManifestIcon } from './utils'
 
 export const defaultSizes = [64, 120, 144, 152, 192, 384, 512]
 
-
 export default async (pwa: PWAContext) => {
   if (!pwa.icon || !pwa.manifest) { return }
 

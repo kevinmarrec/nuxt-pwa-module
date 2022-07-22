@@ -1,5 +1,5 @@
 import { joinURL } from 'ufo'
-import { useNuxt, addServerHandler, createResolver } from '@nuxt/kit'
+import { useNuxt, addServerHandler } from '@nuxt/kit'
 import type { PWAContext } from '../../types'
 
 export default (pwa: PWAContext) => {
