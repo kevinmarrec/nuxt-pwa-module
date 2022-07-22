@@ -1,7 +1,7 @@
 import { setup } from '@nuxt/test-utils'
 import { describe, it, expect } from 'vitest'
-import { defaultSizes } from '../src/icon'
-import { defaultDevices } from '../src/icon/splash'
+import { defaultSizes } from '../src/parts/icon'
+import { defaultDevices } from '../src/parts/icon/splash'
 
 import './setup'
 
@@ -22,8 +22,7 @@ describe('module', async () => {
     }
   })
 
-  it('generate & serve manifest', async () => {
-    await expect('manifest.json').toBeGenerated()
+  it('serve manifest', async () => {
     await expect('manifest.json').toBeServed()
   })
 

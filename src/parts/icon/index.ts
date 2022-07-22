@@ -5,7 +5,7 @@ import { join, resolve } from 'pathe'
 import { provider } from 'std-env'
 import { joinURL } from 'ufo'
 import { useNuxt } from '@nuxt/kit'
-import type { PWAContext } from '../types'
+import type { PWAContext } from '../../types'
 import { defaultDevices, metaFromDevice } from './splash'
 import { getFileHash, makeManifestIcon } from './utils'
 

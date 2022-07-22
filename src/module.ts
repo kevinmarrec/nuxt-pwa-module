@@ -1,9 +1,6 @@
 import { join } from 'pathe'
 import { createResolver, defineNuxtModule } from '@nuxt/kit'
-import icon from './icon'
-import manifest from './manifest'
-import meta from './meta'
-import workbox from './workbox'
+import parts from './parts'
 import type { PWAOptions, PWAContext } from './types'
 
 export default defineNuxtModule<PWAOptions>({
@@ -24,7 +21,7 @@ export default defineNuxtModule<PWAOptions>({
       }
     },
     manifest: {
-      name: process.env.npm_package_name!,
+      name: process.env.npm_package_name! || 'Nuxt PWA',
       short_name: process.env.npm_package_name!,
       description: process.env.npm_package_description!,
       lang: 'en',
@@ -35,7 +32,7 @@ export default defineNuxtModule<PWAOptions>({
       icons: []
     },
     meta: {
-      name: process.env.npm_package_name!,
+      name: process.env.npm_package_name! || 'Nuxt PWA',
       author: process.env.npm_package_author_name!,
       description: process.env.npm_package_description!,
       favicon: true,
@@ -63,7 +60,7 @@ export default defineNuxtModule<PWAOptions>({
     }
   }),
   async setup (options, nuxt) {
-    const pwa: PWAContext = {
+    const ctx: PWAContext = {
       ...options,
       // Nitro serve assets from .nuxt/dist/client by default
       _rootDir: join(nuxt.options.buildDir, 'pwa'),
@@ -71,17 +68,14 @@ export default defineNuxtModule<PWAOptions>({
       _resolver: createResolver(import.meta.url)
     }
 
-    // Await is required for icons cause it needs to get source icon hash from its content
-    await icon(pwa)
-
-    manifest(pwa)
-    meta(pwa)
-    workbox(pwa)
+    for (const part of parts) {
+      await part(ctx)
+    }
 
     // Use nitro public assets to serve `sw.js`, `manifest.json` and assets (icons / splash screens)
     const { nitro, app: { buildAssetsDir } } = nuxt.options
     nitro.publicAssets = nitro.publicAssets || []
-    nitro.publicAssets.push({ dir: pwa._rootDir, baseURL: '/' })
-    nitro.publicAssets.push({ dir: pwa._assetsDir, baseURL: buildAssetsDir })
+    nitro.publicAssets.push({ dir: ctx._rootDir, baseURL: '/' })
+    nitro.publicAssets.push({ dir: ctx._assetsDir, baseURL: buildAssetsDir })
   }
 })

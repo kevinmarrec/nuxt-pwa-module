@@ -45,10 +45,10 @@ expect.extend({
     const ctx = useContext()
     const { baseURL } = ctx.nuxt!.options.app
     const withHashRegex = makeWithHashRegex(received)
-    const path = ctx.generatedFiles?.find(file => withHashRegex.test(file))
+    const path = ctx.generatedFiles?.find(file => withHashRegex.test(file)) || received
 
     return {
-      pass: !!path && (await fetch(joinURL(baseURL, path))).ok,
+      pass: (await fetch(joinURL(baseURL, path))).ok,
       message: () => `${received} is served`
     }
   }

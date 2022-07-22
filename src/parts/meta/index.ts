@@ -1,5 +1,5 @@
 import { useNuxt } from '@nuxt/kit'
-import type { PWAContext } from '../types'
+import type { PWAContext } from '../../types'
 
 export default (pwa: PWAContext) => {
   if (!pwa.meta || !pwa.manifest) { return }

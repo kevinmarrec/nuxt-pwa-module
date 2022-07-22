@@ -27,6 +27,7 @@
   "module": "./dist/module.mjs",
   "types": "./dist/module.d.ts",
   "scripts": {
+    "postinstall": "nuxi prepare example",
     "build": "nuxt-module-build",
     "dev": "nuxi dev example",
     "example:build": "nuxi build example",
@@ -37,17 +38,17 @@
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.1.7",
-    "@nuxt/test-utils": "3.0.0-rc.4",
+    "@nuxt/test-utils": "^3.0.0-rc.6",
     "@nuxtjs/eslint-config-typescript": "^10.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/sharp": "^0.30.4",
-    "@unocss/nuxt": "^0.39.3",
-    "c8": "^7.11.3",
-    "eslint": "^8.18.0",
-    "nuxt": "^3.0.0-rc.3",
+    "@unocss/nuxt": "^0.44.5",
+    "c8": "^7.12.0",
+    "eslint": "^8.20.0",
+    "nuxt": "^3.0.0-rc.6",
     "standard-version": "^9.5.0",
     "typescript": "^4.7.4",
-    "vitest": "^0.16.0"
+    "vitest": "^0.18.1"
   },
   "dependencies": {
     "hasha": "^5.2.2",
@@ -60,5 +61,5 @@
       "pathe"
     ]
   },
-  "packageManager": "pnpm@7.3.0"
+  "packageManager": "pnpm@7.5.0"
 }

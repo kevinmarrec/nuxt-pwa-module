@@ -1,7 +1,7 @@
-import { IconOptions } from './icon/types'
-import { MetaOptions } from './meta/types'
-import { ManifestOptions } from './manifest/types'
-import { WorkboxOptions } from './workbox/types'
+import { IconOptions } from './parts/icon/types'
+import { MetaOptions } from './parts/meta/types'
+import { ManifestOptions } from './parts/manifest/types'
+import { WorkboxOptions } from './parts/workbox/types'
 
 export interface PWAOptions {
   icon: IconOptions | false
