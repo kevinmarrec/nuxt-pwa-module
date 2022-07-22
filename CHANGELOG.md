@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.2](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.4.1...v0.4.2) (2022-07-22)
+
+
+### Bug Fixes
+
+* remove postinstall command ([d67bbc6](https://github.com/kevinmarrec/nuxt-pwa-module/commit/d67bbc6b4cc2bf1e6fc1fa43523c5301fee19907)), closes [#23](https://github.com/kevinmarrec/nuxt-pwa-module/issues/23)
+
 ### [0.4.1](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.4.0...v0.4.1) (2022-07-22)
 
 
