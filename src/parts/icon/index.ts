@@ -81,7 +81,7 @@ export default async (pwa: PWAContext) => {
 
   const generateOptions = JSON.stringify({
     input: options.source,
-    distDir: join(pwa._assetsDir, options.targetDir),
+    distDir: join(pwa._buildAssetsDir, options.targetDir),
     sizes: options.sizes,
     maskablePadding: options.maskablePadding,
     splash: isSplashSupportEnabled ? options.splash : false,

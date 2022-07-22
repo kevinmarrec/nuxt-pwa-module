@@ -31,7 +31,8 @@
     "build": "nuxt-module-build",
     "dev": "nuxi dev example",
     "example:build": "nuxi build example",
-    "example:start": "node example/.output/server/index.mjs",
+    "example:generate": "nuxi generate example",
+    "example:start": "nuxi preview example",
     "lint": "eslint --ext js,ts,vue .",
     "test": "vitest run --reporter verbose",
     "test:coverage": "pnpm test -- --coverage"

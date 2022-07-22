@@ -24,7 +24,7 @@ export default (pwa: PWAContext) => {
   // Service Worker
   addTemplate({
     src: pwa._resolver.resolve('../templates/workbox/sw.js'),
-    dst: join(pwa._rootDir, 'sw.js'),
+    dst: join(pwa._buildDir, 'sw.js'),
     write: true,
     options
   })

@@ -10,24 +10,29 @@ describe('module', async () => {
 
   it('generate & serve icons (+ splash screens)', async () => {
     for (const size of defaultSizes) {
-      await expect(`assets/icons/${size}x${size}.png`).toBeGenerated()
-      await expect(`assets/icons/${size}x${size}.maskable.png`).toBeGenerated()
-      await expect(`assets/icons/${size}x${size}.png`).toBeServed()
-      await expect(`assets/icons/${size}x${size}.maskable.png`).toBeServed()
+      const icon = `icons/${size}x${size}.png`
+      const maskableIcon = `icons/${size}x${size}.maskable.png`
+      await expect(icon).toBeGenerated()
+      await expect(maskableIcon).toBeGenerated()
+      await expect(icon).toBeServed()
+      await expect(maskableIcon).toBeServed()
     }
 
     for (const device of defaultDevices) {
-      await expect(`assets/splash/${device.width}x${device.height}.png`).toBeGenerated()
-      await expect(`assets/splash/${device.width}x${device.height}.png`).toBeServed()
+      const splash = `splash/${device.width}x${device.height}.png`
+      await expect(splash).toBeGenerated()
+      await expect(splash).toBeServed()
     }
   })
 
   it('serve manifest', async () => {
-    await expect('manifest.json').toBeServed()
+    const manifest = 'manifest.json'
+    await expect(manifest).toBeServed()
   })
 
   it('generate & serve worker', async () => {
-    await expect('sw.js').toBeGenerated()
-    await expect('sw.js').toBeServed()
+    const worker = 'sw.js'
+    await expect(worker).toBeGenerated()
+    await expect(worker).toBeServed()
   })
 })
