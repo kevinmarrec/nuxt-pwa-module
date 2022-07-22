@@ -27,9 +27,9 @@
   "module": "./dist/module.mjs",
   "types": "./dist/module.d.ts",
   "scripts": {
-    "postinstall": "nuxi prepare example",
     "build": "nuxt-module-build",
     "dev": "nuxi dev example",
+    "prepare": "nuxi prepare example",
     "example:build": "nuxi build example",
     "example:generate": "nuxi generate example",
     "example:start": "nuxi preview example",
