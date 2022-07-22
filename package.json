@@ -58,8 +58,11 @@
   },
   "build": {
     "externals": [
+      "node:child_process",
+      "node:fs",
       "consola",
-      "pathe"
+      "pathe",
+      "ufo"
     ]
   },
   "packageManager": "pnpm@7.5.0"

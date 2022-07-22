@@ -11,7 +11,7 @@ export default (pwa: PWAContext) => {
 
   addServerHandler({
     route: '/manifest.json',
-    handler: pwa._resolver.resolve('./parts/manifest/handler')
+    handler: pwa._resolver.resolve('./runtime/server/manifest')
   })
 
   pwa._manifestMeta = {
