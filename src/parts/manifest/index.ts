@@ -1,5 +1,6 @@
+import { join } from 'pathe'
 import { joinURL } from 'ufo'
-import { useNuxt, addServerHandler } from '@nuxt/kit'
+import { useNuxt, addServerHandler, addTemplate } from '@nuxt/kit'
 import type { PWAContext } from '../../types'
 
 export default (pwa: PWAContext) => {
@@ -9,10 +10,19 @@ export default (pwa: PWAContext) => {
 
   nuxt.options.runtimeConfig.pwaManifest = pwa.manifest
 
-  addServerHandler({
-    route: '/manifest.json',
-    handler: pwa._resolver.resolve('./runtime/server/manifest')
-  })
+  if (nuxt.options.ssr) {
+    addServerHandler({
+      route: '/manifest.json',
+      handler: pwa._resolver.resolve('./runtime/server/manifest')
+    })
+  } else {
+    addTemplate({
+      filename: 'manifest.json',
+      getContents: () => JSON.stringify(pwa.manifest),
+      dst: join(pwa._buildDir, 'manifest.json'),
+      write: true
+    })
+  }
 
   pwa._manifestMeta = {
     rel: 'manifest',
