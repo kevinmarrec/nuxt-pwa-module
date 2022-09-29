@@ -1,3 +1,4 @@
+import { Resolver } from '@nuxt/kit'
 import { IconOptions } from './parts/icon/types'
 import { MetaOptions } from './parts/meta/types'
 import { ManifestOptions } from './parts/manifest/types'
@@ -15,7 +16,7 @@ export interface PWAContext extends PWAOptions {
   _buildAssetsDir: string
   _manifestMeta?: { rel: 'manifest', href: string }
   _splashMetas?: Array<{ rel: 'apple-touch-startup-image', href: string, media: string }>
-  _resolver: { resolve: (...path: string[]) => string }
+  _resolver: Resolver
 }
 
 declare module '@nuxt/schema' {

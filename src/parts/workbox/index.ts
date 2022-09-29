@@ -4,7 +4,7 @@ import { join } from 'pathe'
 import { joinURL } from 'ufo'
 import type { PWAContext } from '../../types'
 
-export default (pwa: PWAContext) => {
+export default async (pwa: PWAContext) => {
   if (!pwa.workbox || !pwa.workbox.enabled) { return }
 
   const options = pwa.workbox
@@ -23,7 +23,7 @@ export default (pwa: PWAContext) => {
 
   // Service Worker
   addTemplate({
-    src: pwa._resolver.resolve('../templates/workbox/sw.js'),
+    src: options.templatePath ? await pwa._resolver.resolvePath(options.templatePath) : pwa._resolver.resolve('../templates/workbox/sw.js'),
     dst: join(pwa._buildDir, 'sw.js'),
     write: true,
     options

@@ -55,6 +55,23 @@ export default defineNuxtConfig({
 })
 ```
 
+If you need custom workbox service worker, you can specify path to your worker with `pwa.workbox.templatePath` option, you can use path aliases like `~` and `@`.
+
+```ts
+export default defineNuxtConfig({
+  modules: [
+    '@kevinmarrec/nuxt-pwa'
+  ],
+  pwa: {
+    workbox: {
+      templatePath: '~/path/to/your/worker.js'
+    }
+  }
+})
+```
+
+> To customize it, you can check the default of this module [here](https://github.com/kevinmarrec/nuxt-pwa-module/blob/main/templates/workbox/sw.js), as well as [Nuxt 2 default](https://github.com/nuxt-community/pwa-module/blob/main/templates/workbox/sw.js) and [Workbow Documentation](https://developer.chrome.com/docs/workbox).
+
 ## ⚠️ Missing features ⚠️
 
 Compared to Nuxt 2 PWA, this module is - as for now - missing the following features:

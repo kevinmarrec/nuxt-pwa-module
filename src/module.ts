@@ -54,6 +54,7 @@ export default defineNuxtModule<PWAOptions>({
     },
     workbox: {
       enabled: !nuxt.options.dev,
+      templatePath: null,
       workboxVersion: '6.5.3',
       workboxUrl: null
       // TODO: More Workbox options
