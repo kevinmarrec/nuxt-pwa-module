@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.4.2...v0.5.0) (2022-09-29)
+
+
+### Features
+
+* add custom worker template option ([fd77f68](https://github.com/kevinmarrec/nuxt-pwa-module/commit/fd77f68dd19ee793c7b563e3fa6016b77d18ac9c)), closes [#16](https://github.com/kevinmarrec/nuxt-pwa-module/issues/16) [#27](https://github.com/kevinmarrec/nuxt-pwa-module/issues/27) [#29](https://github.com/kevinmarrec/nuxt-pwa-module/issues/29) [#36](https://github.com/kevinmarrec/nuxt-pwa-module/issues/36) [#38](https://github.com/kevinmarrec/nuxt-pwa-module/issues/38)
+
+
+### Bug Fixes
+
+* generate manifest.json when ssr is disabled ([8c52b11](https://github.com/kevinmarrec/nuxt-pwa-module/commit/8c52b1103d1c47c27fd3016026ba48a86ea16578)), closes [#32](https://github.com/kevinmarrec/nuxt-pwa-module/issues/32)
+* **icon:** better unusual input icon handling ([8c1f8e2](https://github.com/kevinmarrec/nuxt-pwa-module/commit/8c1f8e2c715ca1416d5d3c6d4a7059fe49f8a99b)), closes [#40](https://github.com/kevinmarrec/nuxt-pwa-module/issues/40)
+
 ### [0.4.2](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.4.1...v0.4.2) (2022-07-22)
 
 
