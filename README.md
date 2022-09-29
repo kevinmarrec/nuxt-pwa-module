@@ -70,7 +70,7 @@ export default defineNuxtConfig({
 })
 ```
 
-> To customize it, you can check the default of this module [here](https://github.com/kevinmarrec/nuxt-pwa-module/blob/main/templates/workbox/sw.js), as well as [Nuxt 2 default](https://github.com/nuxt-community/pwa-module/blob/main/templates/workbox/sw.js) and [Workbow Documentation](https://developer.chrome.com/docs/workbox).
+> To customize it, you can check the default of this module [here](https://github.com/kevinmarrec/nuxt-pwa-module/blob/main/templates/workbox/sw.js), as well as [Nuxt 2 default](https://github.com/nuxt-community/pwa-module/blob/main/templates/workbox/sw.js) and [Workbox Documentation](https://developer.chrome.com/docs/workbox).
 
 ## ⚠️ Missing features ⚠️
 
