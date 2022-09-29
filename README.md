@@ -29,11 +29,11 @@ pnpm install -D @kevinmarrec/nuxt-pwa
 Edit your `nuxt.config.ts` file to add PWA module :
 
 ```ts
-{
+export default defineNuxtConfig({
   modules: [
     '@kevinmarrec/nuxt-pwa'
   ]
-}
+})
 ```
 
 ## Configuration
@@ -43,7 +43,7 @@ As this module tries to be compliant with Nuxt 2 PWA for easy migration, you can
 If you want your app to be installable in **development**, you need to set `pwa.workbox.enabled` option to `true` in your `nuxt.config`, as it's only enabled for production by default :
 
 ```ts
-{
+export default defineNuxtConfig({
   modules: [
     '@kevinmarrec/nuxt-pwa'
   ],
@@ -52,7 +52,7 @@ If you want your app to be installable in **development**, you need to set `pwa.
       enabled: true
     }
   }
-}
+})
 ```
 
 ## ⚠️ Missing features ⚠️
