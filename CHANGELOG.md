@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.1](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.6.0...v0.6.1) (2022-10-01)
+
+
+### Bug Fixes
+
+* **icon:** support all icon sizes ([f342fa8](https://github.com/kevinmarrec/nuxt-pwa-module/commit/f342fa895110ad4525c8e46a9ca5574413dc4b15))
+
 ## [0.6.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.5.0...v0.6.0) (2022-10-01)
 
 
