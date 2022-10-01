@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.5.0...v0.6.0) (2022-10-01)
+
+
+### Features
+
+* usePWAIcon composable  ([#43](https://github.com/kevinmarrec/nuxt-pwa-module/issues/43)) ([adfac55](https://github.com/kevinmarrec/nuxt-pwa-module/commit/adfac557535b7d6b7b81939cf12ba8b08839f4c3)), closes [#42](https://github.com/kevinmarrec/nuxt-pwa-module/issues/42)
+
 ## [0.5.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.4.2...v0.5.0) (2022-09-29)
 
 
