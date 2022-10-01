@@ -111,8 +111,10 @@ export default async (pwa: PWAContext) => {
   // Generate types
   const typesPath = addTemplate({
     filename: 'types/pwa.d.ts',
-    getContents: () => `export const IconSize: ${options.sizes.join(' | ')}`
-  })!.dst
+    getContents: () => `export type IconSize = number | ${options.sizes.map(size => `'${size}'`).join(' | ')}`
+  }).dst.replace(/\.d\.ts$/, '')
 
-  nuxt.hook('prepare:types', ({ tsConfig }) => { tsConfig.compilerOptions!.paths['#pwa'] = [relative(nuxt.options.srcDir, typesPath.replace(/\.d\.ts$/, ''))] })
+  nuxt.hook('prepare:types', ({ tsConfig }) => {
+    tsConfig.compilerOptions.paths['#pwa'] = [relative(nuxt.options.srcDir, typesPath)]
+  })
 }

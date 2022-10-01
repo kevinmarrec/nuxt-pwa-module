@@ -2,6 +2,7 @@ export default defineNuxtConfig({
   app: {
     buildAssetsDir: '/assets/'
   },
+  css: ['@unocss/reset/antfu.css'],
   modules: [
     '@unocss/nuxt',
     '../src/module'
@@ -14,9 +15,5 @@ export default defineNuxtConfig({
     workbox: {
       enabled: true
     }
-  },
-  unocss: {
-    preflight: true,
-    icons: true
   }
 })

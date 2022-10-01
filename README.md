@@ -72,11 +72,20 @@ export default defineNuxtConfig({
 
 > To customize it, you can check the default of this module [here](https://github.com/kevinmarrec/nuxt-pwa-module/blob/main/templates/workbox/sw.js), as well as [Nuxt 2 default](https://github.com/nuxt-community/pwa-module/blob/main/templates/workbox/sw.js) and [Workbox Documentation](https://developer.chrome.com/docs/workbox).
 
-## ⚠️ Missing features ⚠️
+## Composables
 
-Compared to Nuxt 2 PWA, this module is - as for now - missing the following features:
-- Workbox extra options (`enabled`, `workboxUrl`, `workboxVersion` only supported)
-- OneSignal support
+### usePWAIcon (size, options)
+
+You can use `usePWAIcon` to get icons urls of your PWA, and use it in your app.
+
+```ts
+const icon = usePWAIcon(512) // /assets/icons/512x512.png
+const icon = usePWAIcon(512, { maskable: true }) // /assets/icons/512x512.maskable.png
+```
+
+Alternatively, you can benefit of available sizes with Typescript using a `string` instead of `number` size parameter :
+
+![image](https://user-images.githubusercontent.com/25272043/193407772-2326170d-86cc-4246-ae8c-cb711b4d8aa9.png)
 
 ## Development
 

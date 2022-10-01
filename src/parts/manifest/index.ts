@@ -8,7 +8,7 @@ export default (pwa: PWAContext) => {
 
   const nuxt = useNuxt()
 
-  nuxt.options.runtimeConfig.pwaManifest = pwa.manifest
+  nuxt.options.runtimeConfig.public.pwaManifest = pwa.manifest
 
   if (nuxt.options.ssr) {
     addServerHandler({
