@@ -4,7 +4,7 @@ import consola from 'consola'
 import { join, resolve } from 'pathe'
 import { provider } from 'std-env'
 import { joinURL } from 'ufo'
-import { useNuxt } from '@nuxt/kit'
+import { addTemplate, useNuxt } from '@nuxt/kit'
 import type { PWAContext } from '../../types'
 import { defaultDevices, metaFromDevice } from './splash'
 import { getFileHash, makeManifestIcon } from './utils'
@@ -107,4 +107,16 @@ export default async (pwa: PWAContext) => {
   nuxt.hook('nitro:build:before', async () => {
     await generate
   })
+
+  // Generate types
+  const typesPath = addTemplate({
+    filename: 'types/pwa.d.ts',
+    getContents: () => [
+      'declare module \'#pwa\' {',
+      `  const IconSize: ${options.sizes.join(' | ')}`,
+      '}'
+    ].join('\n')
+  }).dst
+
+  nuxt.hook('prepare:types', ({ references }) => { references.push({ path: typesPath }) })
 }
