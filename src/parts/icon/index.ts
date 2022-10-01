@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs'
 import { fork } from 'node:child_process'
 import consola from 'consola'
-import { join, resolve } from 'pathe'
+import { join, resolve, relative } from 'pathe'
 import { provider } from 'std-env'
 import { joinURL } from 'ufo'
 import { addTemplate, useNuxt } from '@nuxt/kit'
@@ -111,12 +111,8 @@ export default async (pwa: PWAContext) => {
   // Generate types
   const typesPath = addTemplate({
     filename: 'types/pwa.d.ts',
-    getContents: () => [
-      'declare module \'#pwa\' {',
-      `  const IconSize: ${options.sizes.join(' | ')}`,
-      '}'
-    ].join('\n')
-  }).dst
+    getContents: () => `export const IconSize: ${options.sizes.join(' | ')}`
+  })!.dst
 
-  nuxt.hook('prepare:types', ({ references }) => { references.push({ path: typesPath }) })
+  nuxt.hook('prepare:types', ({ tsConfig }) => { tsConfig.compilerOptions!.paths['#pwa'] = [relative(nuxt.options.srcDir, typesPath.replace(/\.d\.ts$/, ''))] })
 }
