@@ -1,5 +1,5 @@
 import { join } from 'pathe'
-import { createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addImportsDir, createResolver, defineNuxtModule } from '@nuxt/kit'
 import parts from './parts'
 import type { PWAOptions, PWAContext } from './types'
 
@@ -69,6 +69,8 @@ export default defineNuxtModule<PWAOptions>({
       _buildDir: join(buildDir, 'pwa'),
       _resolver: createResolver(import.meta.url)
     }
+
+    addImportsDir(ctx._resolver.resolve('./runtime/composables'))
 
     for (const part of parts) {
       await part(ctx)

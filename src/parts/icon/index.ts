@@ -1,10 +1,10 @@
 import { existsSync } from 'node:fs'
 import { fork } from 'node:child_process'
 import consola from 'consola'
-import { join, resolve } from 'pathe'
+import { join, resolve, relative } from 'pathe'
 import { provider } from 'std-env'
 import { joinURL } from 'ufo'
-import { useNuxt } from '@nuxt/kit'
+import { addTemplate, useNuxt } from '@nuxt/kit'
 import type { PWAContext } from '../../types'
 import { defaultDevices, metaFromDevice } from './splash'
 import { getFileHash, makeManifestIcon } from './utils'
@@ -106,5 +106,15 @@ export default async (pwa: PWAContext) => {
   // Ensure icons (& splash screens) have been generated before Nitro build
   nuxt.hook('nitro:build:before', async () => {
     await generate
+  })
+
+  // Generate types
+  const typesPath = addTemplate({
+    filename: 'types/pwa.d.ts',
+    getContents: () => `export type IconSize = number | ${options.sizes.map(size => `'${size}'`).join(' | ')}`
+  }).dst.replace(/\.d\.ts$/, '')
+
+  nuxt.hook('prepare:types', ({ tsConfig }) => {
+    tsConfig.compilerOptions.paths['#pwa'] = [relative(nuxt.options.srcDir, typesPath)]
   })
 }
