@@ -28,5 +28,5 @@ export interface ManifestIconMakerOptions {
 }
 
 export type {
-  ManifestIcon
+  ManifestIcon,
 }

@@ -1,14 +1,14 @@
 import {
   defineConfig,
   presetUno,
-  transformerDirectives
+  transformerDirectives,
 } from 'unocss'
 
 export default defineConfig({
   presets: [
-    presetUno()
+    presetUno(),
   ],
   transformers: [
-    transformerDirectives()
-  ]
+    transformerDirectives(),
+  ],
 })

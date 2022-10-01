@@ -1,4 +1,4 @@
-import { useTestContext, fetch } from '@nuxt/test-utils'
+import { fetch, useTestContext } from '@nuxt/test-utils'
 import globby from 'globby'
 import { join, relative } from 'pathe'
 import { joinURL } from 'ufo'
@@ -20,7 +20,6 @@ function useContext () {
 }
 
 function makeWithHashRegex (path: string): RegExp {
-  // eslint-disable-next-line no-useless-escape
   return new RegExp(path.replace(/\./g, '\.').replace(/\.([^\.]*)$/, '(\..{8})?\.$1'))
 }
 
@@ -38,7 +37,7 @@ expect.extend({
 
     return {
       pass: ctx.generatedFiles.some(file => withHashRegex.test(file)),
-      message: () => `${received} is generated`
+      message: () => `${received} is generated`,
     }
   },
   async toBeServed (received: string) {
@@ -49,7 +48,7 @@ expect.extend({
 
     return {
       pass: (await fetch(joinURL(baseURL, path))).ok,
-      message: () => `${received} is served`
+      message: () => `${received} is served`,
     }
-  }
+  },
 })

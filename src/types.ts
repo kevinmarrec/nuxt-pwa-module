@@ -1,8 +1,8 @@
-import { Resolver } from '@nuxt/kit'
-import { IconOptions } from './parts/icon/types'
-import { MetaOptions } from './parts/meta/types'
-import { ManifestOptions } from './parts/manifest/types'
-import { WorkboxOptions } from './parts/workbox/types'
+import type { Resolver } from '@nuxt/kit'
+import type { IconOptions } from './parts/icon/types'
+import type { MetaOptions } from './parts/meta/types'
+import type { ManifestOptions } from './parts/manifest/types'
+import type { WorkboxOptions } from './parts/workbox/types'
 
 export interface PWAOptions {
   icon: IconOptions | false
@@ -14,8 +14,8 @@ export interface PWAOptions {
 export interface PWAContext extends PWAOptions {
   _buildDir: string
   _buildAssetsDir: string
-  _manifestMeta?: { rel: 'manifest', href: string }
-  _splashMetas?: Array<{ rel: 'apple-touch-startup-image', href: string, media: string }>
+  _manifestMeta?: { rel: 'manifest'; href: string }
+  _splashMetas?: Array<{ rel: 'apple-touch-startup-image'; href: string; media: string }>
   _resolver: Resolver
 }
 

@@ -12,7 +12,7 @@ export interface MetaOptions {
   ogSiteName: boolean | string
   ogTitle: boolean | string
   ogDescription: boolean | string
-  ogImage: boolean | string | { path: string, width?: number, height?: number, type?: string }
+  ogImage: boolean | string | { path: string; width?: number; height?: number; type?: string }
   ogHost: string | undefined
   ogUrl: boolean | string
   twitterCard: string | undefined

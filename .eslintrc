@@ -1,8 +1,6 @@
 {
-  "extends": [
-    "@nuxtjs/eslint-config-typescript"
-  ],
+  "extends": "@antfu",
   "rules": {
-    "vue/multi-word-component-names": "off"
+    "@typescript-eslint/space-before-function-paren": ["error", "always"]
   }
 }

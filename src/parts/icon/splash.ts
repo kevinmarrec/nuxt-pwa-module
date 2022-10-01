@@ -16,7 +16,7 @@ const portraits: Device[] = [
   { width: 1536, height: 2048, pixelRatio: 2 },
   { width: 1620, height: 2160, pixelRatio: 2 },
   { width: 1668, height: 2224, pixelRatio: 2 },
-  { width: 1668, height: 2388, pixelRatio: 2 }
+  { width: 1668, height: 2388, pixelRatio: 2 },
 ].map(device => ({ ...device, orientation: 'portrait' }))
 
 // Landscapes
@@ -33,15 +33,15 @@ const landscapes: Device[] = [
   { width: 2532, height: 1170, pixelRatio: 3 },
   { width: 2688, height: 1242, pixelRatio: 3 },
   { width: 2732, height: 2048, pixelRatio: 2 },
-  { width: 2778, height: 1284, pixelRatio: 3 }
+  { width: 2778, height: 1284, pixelRatio: 3 },
 ].map(device => ({ ...device, orientation: 'landscape' }))
 
 export const defaultDevices = [
   ...portraits,
-  ...landscapes
+  ...landscapes,
 ]
 
-export const metaFromDevice = (device: Device, options: { assetsDir: string, hash: string }) => {
+export const metaFromDevice = (device: Device, options: { assetsDir: string; hash: string }) => {
   const { width, height, pixelRatio, orientation } = device
   const { assetsDir, hash } = options
 
@@ -51,8 +51,8 @@ export const metaFromDevice = (device: Device, options: { assetsDir: string, has
       `(device-width: ${width / pixelRatio}px)`,
       `(device-height: ${height / pixelRatio}px)`,
       `(-webkit-device-pixel-ratio: ${pixelRatio})`,
-      `(orientation: ${orientation})`
+      `(orientation: ${orientation})`,
     ].join(' and '),
-    rel: 'apple-touch-startup-image' as const
+    rel: 'apple-touch-startup-image' as const,
   }
 }

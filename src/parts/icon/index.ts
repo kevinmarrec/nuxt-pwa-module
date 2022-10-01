@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs'
 import { fork } from 'node:child_process'
 import consola from 'consola'
-import { join, resolve, relative } from 'pathe'
+import { join, relative, resolve } from 'pathe'
 import { provider } from 'std-env'
 import { joinURL } from 'ufo'
 import { addTemplate, useNuxt } from '@nuxt/kit'
@@ -12,12 +12,12 @@ import { getFileHash, makeManifestIcon } from './utils'
 export const defaultSizes = [64, 120, 144, 152, 192, 384, 512]
 
 export default async (pwa: PWAContext) => {
-  if (!pwa.icon || !pwa.manifest) { return }
+  if (!pwa.icon || !pwa.manifest)
+    return
 
   if (provider === 'stackblitz') {
-    // eslint-disable-next-line no-console
     return console.warn(
-      '[PWA] Disabling icon generation as `sharp` is not currently supported on StackBlitz.'
+      '[PWA] Disabling icon generation as `sharp` is not currently supported on StackBlitz.',
     )
   }
 
@@ -28,17 +28,15 @@ export default async (pwa: PWAContext) => {
     options.source = resolve(
       nuxt.options.srcDir,
       nuxt.options.dir.public,
-      options.fileName
+      options.fileName,
     )
   }
 
-  if (!existsSync(options.source)) {
+  if (!existsSync(options.source))
     return consola.warn(`[PWA] Icon not found at ${options.source}`)
-  }
 
-  if (options.sizes.length === 0) {
+  if (options.sizes.length === 0)
     options.sizes = [64, 120, 144, 152, 192, 384, 512]
-  }
 
   // Hash as suffix for production
   const hash = nuxt.options.dev ? '' : `.${await getFileHash(options.source)}`
@@ -46,7 +44,7 @@ export default async (pwa: PWAContext) => {
   const iconsDir = joinURL(
     nuxt.options.app.baseURL,
     nuxt.options.app.buildAssetsDir,
-    options.targetDir
+    options.targetDir,
   )
 
   // Prepare manifest file
@@ -59,23 +57,21 @@ export default async (pwa: PWAContext) => {
 
   // Prepare splash screens
   if (isSplashSupportEnabled) {
-    if (!options.splash.backgroundColor) {
+    if (!options.splash.backgroundColor)
       options.splash.backgroundColor = pwa.manifest.background_color
-    }
 
-    if (options.splash.devices.length === 0) {
+    if (options.splash.devices.length === 0)
       options.splash.devices = defaultDevices
-    }
 
     pwa._splashMetas = options.splash.devices.map(device =>
       metaFromDevice(device, {
         assetsDir: joinURL(
           nuxt.options.app.baseURL,
           nuxt.options.app.buildAssetsDir,
-          options.splash.targetDir
+          options.splash.targetDir,
         ),
-        hash
-      })
+        hash,
+      }),
     )
   }
 
@@ -85,7 +81,7 @@ export default async (pwa: PWAContext) => {
     sizes: options.sizes,
     maskablePadding: options.maskablePadding,
     splash: isSplashSupportEnabled ? options.splash : false,
-    hash
+    hash,
   })
 
   let generate: Promise<void>
@@ -111,7 +107,7 @@ export default async (pwa: PWAContext) => {
   // Generate types
   const typesPath = addTemplate({
     filename: 'types/pwa.d.ts',
-    getContents: () => `export type IconSize = number | ${options.sizes.map(size => `'${size}'`).join(' | ')}`
+    getContents: () => `export type IconSize = number | ${options.sizes.map(size => `'${size}'`).join(' | ')}`,
   }).dst.replace(/\.d\.ts$/, '')
 
   nuxt.hook('prepare:types', ({ tsConfig }) => {

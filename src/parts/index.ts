@@ -7,5 +7,5 @@ export default [
   icon,
   manifest,
   meta,
-  workbox
+  workbox,
 ]
