@@ -18,7 +18,7 @@ export default async (pwa: PWAContext) => {
   if (!options.workboxUrl)
     options.workboxUrl = `https://storage.googleapis.com/workbox-cdn/releases/${options.workboxVersion}/workbox-sw.js`
 
-  // Service Worker
+  // Define Service Worker
   addTemplate({
     src: options.templatePath ? await pwa._resolver.resolvePath(options.templatePath) : pwa._resolver.resolve('../templates/workbox/sw.js'),
     dst: join(pwa._buildDir, 'sw.js'),
@@ -26,8 +26,11 @@ export default async (pwa: PWAContext) => {
     options,
   })
 
-  nuxt.hook('nitro:config', (config) => {
-    config.plugins = config.plugins || []
-    config.plugins.push(pwa._resolver.resolve('./runtime/nitro-plugin'))
-  })
+  // Register Service Worker
+  if (options.autoRegister) {
+    nuxt.hook('nitro:config', (config) => {
+      config.plugins = config.plugins || []
+      config.plugins.push(pwa._resolver.resolve('./runtime/nitro-plugin'))
+    })
+  }
 }

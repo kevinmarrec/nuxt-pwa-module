@@ -53,6 +53,7 @@ export default defineNuxtModule<PWAOptions>({
       twitterCreator: undefined,
     },
     workbox: {
+      autoRegister: true,
       enabled: !nuxt.options.dev,
       templatePath: null,
       workboxVersion: '6.5.3',
