@@ -29,8 +29,12 @@ export default async (pwa: PWAContext) => {
   // Register Service Worker
   if (options.autoRegister) {
     nuxt.hook('nitro:config', (config) => {
+      const plugin = pwa._resolver.resolve('./runtime/nitro-plugin')
+      config.externals = config.externals || {}
+      config.externals.inline = config.externals.inline || []
+      config.externals.inline.push(plugin)
       config.plugins = config.plugins || []
-      config.plugins.push(pwa._resolver.resolve('./runtime/nitro-plugin'))
+      config.plugins.push(plugin)
     })
   }
 }
