@@ -1,5 +1,6 @@
 import type { NitroAppPlugin } from 'nitropack'
 import { joinURL } from 'ufo'
+import { useRuntimeConfig } from '#imports'
 
 export default <NitroAppPlugin> function (nitro) {
   nitro.hooks.hook('render:html', (htmlContext) => {
