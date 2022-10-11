@@ -1,7 +1,6 @@
 import { addTemplate, useNuxt } from '@nuxt/kit'
 import consola from 'consola'
 import { join } from 'pathe'
-import { joinURL } from 'ufo'
 import type { PWAContext } from '../../types'
 
 export default async (pwa: PWAContext) => {
@@ -10,7 +9,6 @@ export default async (pwa: PWAContext) => {
 
   const options = pwa.workbox
   const nuxt = useNuxt()
-  const head = nuxt.options.app.head as Required<typeof nuxt.options.app.head>
 
   // Warning when in development mode
   if (nuxt.options.dev)
@@ -28,12 +26,8 @@ export default async (pwa: PWAContext) => {
     options,
   })
 
-  // Embed script that registers the Service Worker
-  head.script.push({
-    children: [
-      'if (\'serviceWorker\' in navigator) {',
-      `  window.addEventListener('load', () => navigator.serviceWorker.register('${joinURL(nuxt.options.app.baseURL, 'sw.js')}'))`,
-      '}',
-    ].join('\n'),
+  nuxt.hook('nitro:config', (config) => {
+    config.plugins = config.plugins || []
+    config.plugins.push(pwa._resolver.resolve('./runtime/nitro-plugin'))
   })
 }
