@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.6.1...v0.7.0) (2022-10-11)
+
+
+### Features
+
+* add workbox.autoRegister option ([76ecf22](https://github.com/kevinmarrec/nuxt-pwa-module/commit/76ecf22f24bc4a07a14ac62b92611a91cf2ea2eb)), closes [#46](https://github.com/kevinmarrec/nuxt-pwa-module/issues/46)
+
+
+### Bug Fixes
+
+* use nitro plugin for sw registration ([79063ef](https://github.com/kevinmarrec/nuxt-pwa-module/commit/79063ef2312e05bbac4e3a1247d367392176a055)), closes [#45](https://github.com/kevinmarrec/nuxt-pwa-module/issues/45)
+
 ### [0.6.1](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.6.0...v0.6.1) (2022-10-01)
 
 
