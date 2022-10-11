@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.1](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.7.0...v0.7.1) (2022-10-11)
+
+
+### Bug Fixes
+
+* add missing import in nitro plugin ([1c1b3e2](https://github.com/kevinmarrec/nuxt-pwa-module/commit/1c1b3e225c0a7bfa4cfb4ae526a8cb30dd213728))
+
 ## [0.7.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.6.1...v0.7.0) (2022-10-11)
 
 
