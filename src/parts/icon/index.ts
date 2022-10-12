@@ -35,6 +35,14 @@ export default async (pwa: PWAContext) => {
   if (!existsSync(options.source))
     return consola.warn(`[PWA] Icon not found at ${options.source}`)
 
+  if (!options.maskableSource) {
+    const possibleSource = options.source.replace(/\.(.*)$/, '.maskable.$1')
+    options.maskableSource = existsSync(possibleSource) ? possibleSource : options.source
+  }
+
+  if (!existsSync(options.maskableSource))
+    return consola.warn(`[PWA] Maskable Icon not found at ${options.maskableSource}`)
+
   if (options.sizes.length === 0)
     options.sizes = [64, 120, 144, 152, 192, 384, 512]
 
@@ -79,6 +87,7 @@ export default async (pwa: PWAContext) => {
     input: options.source,
     distDir: join(pwa._buildAssetsDir, options.targetDir),
     sizes: options.sizes,
+    maskableInput: options.maskableSource,
     maskablePadding: options.maskablePadding,
     splash: isSplashSupportEnabled ? options.splash : false,
     hash,

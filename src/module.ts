@@ -12,6 +12,7 @@ export default defineNuxtModule<PWAOptions>({
       source: null,
       sizes: [],
       maskablePadding: 20,
+      maskableSource: null,
       fileName: 'icon.png',
       targetDir: 'icons',
       splash: {
