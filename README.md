@@ -87,6 +87,10 @@ Alternatively, you can benefit of available sizes with Typescript using a `strin
 
 ![image](https://user-images.githubusercontent.com/25272043/193407772-2326170d-86cc-4246-ae8c-cb711b4d8aa9.png)
 
+## Differences to `@nuxtjs/pwa`
+
+- The `manifest` options have to be nested under `pwa`. If they are specified at the config root they are ignored.
+
 ## Development
 
 Make sure to install the dependencies :
