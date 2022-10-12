@@ -12,6 +12,7 @@ export interface IconOptions {
   fileName: string
   sizes: number[]
   maskablePadding: number
+  maskableSource: string | null
   targetDir: string
   splash: {
     backgroundColor: string | undefined
