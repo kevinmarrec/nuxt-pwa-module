@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.7.2...v0.8.0) (2022-10-12)
+
+
+### Features
+
+* **icon:** add icon.maskableSource option ([#51](https://github.com/kevinmarrec/nuxt-pwa-module/issues/51)) ([84cb83d](https://github.com/kevinmarrec/nuxt-pwa-module/commit/84cb83d163e6e0694d14af89e786353b5e97cf73))
+
 ### [0.7.2](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.7.1...v0.7.2) (2022-10-11)
 
 
