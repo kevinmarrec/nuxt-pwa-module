@@ -53,24 +53,24 @@ export interface ManifestProtocolHandler {
 }
 
 export interface ManifestOptions {
-  id: string,
+  id?: string,
   name: string
   short_name: string
   description: string
   lang: string
-  scope: string
+  scope?: string
   start_url: string
   display: ManifestDisplay
-  display_override: ManifestDislplayOverlay[]
-  orientation: ManifestOrientation
+  display_override?: ManifestDislplayOverlay[]
+  orientation?: ManifestOrientation
   background_color: string
   theme_color: string
-  categories: string[]
+  categories?: string[]
   icons: ManifestIcon[]
-  screenshots: ManifestScreenshot[]
-  shortcuts: ManifestShortcut[]
-  related_applications: ManifestRelatedApplication[]
-  prefer_related_applications: boolean
-  share_target: ManifestShareTarget
-  protocol_handlers: ManifestProtocolHandler[]
+  screenshots?: ManifestScreenshot[]
+  shortcuts?: ManifestShortcut[]
+  related_applications?: ManifestRelatedApplication[]
+  prefer_related_applications?: boolean
+  share_target?: ManifestShareTarget
+  protocol_handlers?: ManifestProtocolHandler[]
 }
