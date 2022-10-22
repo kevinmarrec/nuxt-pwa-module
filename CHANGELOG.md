@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.8.0...v0.9.0) (2022-10-22)
+
+
+### Features
+
+* add missing optional properties to ManifestOptions interface ([#55](https://github.com/kevinmarrec/nuxt-pwa-module/issues/55)) ([0779344](https://github.com/kevinmarrec/nuxt-pwa-module/commit/07793449fab4bcc5c0ffad30fe9a48d4de19b954))
+
+
+### Bug Fixes
+
+* **meta:** ability to opt-out theme_color property ([ee3070e](https://github.com/kevinmarrec/nuxt-pwa-module/commit/ee3070ee44680a5c6dc972b88393ce0750b5c376)), closes [#53](https://github.com/kevinmarrec/nuxt-pwa-module/issues/53)
+* **meta:** prevent title override ([e637b0f](https://github.com/kevinmarrec/nuxt-pwa-module/commit/e637b0f6a073a4e5a80cafda2d77a7691f84531e))
+
 ## [0.8.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.7.2...v0.8.0) (2022-10-12)
 
 
