@@ -58,10 +58,11 @@ export default (pwa: PWAContext) => {
     head.meta.push({ name: 'description', content: options.description })
 
   // Theme Color
-  const themeColor = pwa.meta.theme_color || (pwa.manifest && pwa.manifest.theme_color)
-
-  if (themeColor)
-    head.meta.push({ name: 'theme-color', content: themeColor })
+  if (options.theme_color !== false) {
+    const themeColor = pwa.meta.theme_color || (pwa.manifest && pwa.manifest.theme_color)
+    if (themeColor)
+      head.meta.push({ name: 'theme-color', content: themeColor })
+  }
 
   // Lang
   if (options.lang) {
