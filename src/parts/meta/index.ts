@@ -43,7 +43,7 @@ export default (pwa: PWAContext) => {
   }
 
   // Title
-  if (!head.title)
+  if (!head.title && !head.titleTemplate)
     head.title = options.name
 
   // IOS launch icon title
