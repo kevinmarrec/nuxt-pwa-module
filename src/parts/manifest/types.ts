@@ -34,7 +34,7 @@ export interface ManifestRelatedApplication {
 
 export interface ManifestShareTarget {
   action: string
-  method?: 'GET' | 'POST' 
+  method?: 'GET' | 'POST'
   enctype?: string
   params: {
     title?: string
@@ -53,7 +53,7 @@ export interface ManifestProtocolHandler {
 }
 
 export interface ManifestOptions {
-  id?: string,
+  id?: string
   name: string
   short_name: string
   description: string
@@ -61,7 +61,7 @@ export interface ManifestOptions {
   scope?: string
   start_url: string
   display: ManifestDisplay
-  display_override?: ManifestDislplayOverlay[]
+  display_override?: ManifestDisplayOverride
   orientation?: ManifestOrientation
   background_color: string
   theme_color: string
