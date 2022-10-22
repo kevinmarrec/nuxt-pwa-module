@@ -43,10 +43,11 @@ export default (pwa: PWAContext) => {
   }
 
   // Title
-  head.title = options.name
+  if (!head.title)
+    head.title = options.name
 
   // IOS launch icon title
-  head.meta.push({ name: 'apple-mobile-web-app-title', content: options.name })
+  head.meta.push({ name: 'apple-mobile-web-app-title', content: head.title })
 
   // Author
   if (options.author)
