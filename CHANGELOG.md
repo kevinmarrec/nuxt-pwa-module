@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.1](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.9.0...v0.9.1) (2022-10-22)
+
+
+### Bug Fixes
+
+* prevent title override when titleTemplate is used ([8b66b07](https://github.com/kevinmarrec/nuxt-pwa-module/commit/8b66b07a8d7d3ee55637b0627e98160ce5862c73))
+
 ## [0.9.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.8.0...v0.9.0) (2022-10-22)
 
 
