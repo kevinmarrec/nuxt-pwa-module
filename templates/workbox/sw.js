@@ -21,9 +21,10 @@ registerRoute(
   })
 )
 
-// Cache CSS, JS, and Web Worker requests with a Stale While Revalidate strategy
+// Cache Web Manifest, CSS, JS, and Web Worker requests with a Stale While Revalidate strategy
 registerRoute(
   ({ request }) =>
+    request.destination === 'manifest' ||
     request.destination === 'style' ||
     request.destination === 'script' ||
     request.destination === 'worker',
