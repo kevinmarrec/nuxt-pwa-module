@@ -37,8 +37,8 @@ export default (pwa: PWAContext) => {
 
     // Shortcut icon
     if (options.favicon) {
-      head.link.push({ rel: 'shortcut icon', href: iconSmall.src })
-      head.link.push({ rel: 'apple-touch-icon', href: iconBig.src, sizes: iconBig.sizes })
+      head.link.push({ rel: 'icon', href: iconSmall.src, key: 'favicon' })
+      head.link.push({ rel: 'apple-touch-icon', href: iconBig.src, sizes: iconBig.sizes, key: 'favicon-apple' })
     }
   }
 
