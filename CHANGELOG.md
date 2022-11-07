@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.9.1...v0.10.0) (2022-11-07)
+
+
+### Features
+
+* **sw:** include web manifest in assets strategy ([#59](https://github.com/kevinmarrec/nuxt-pwa-module/issues/59)) ([4326eba](https://github.com/kevinmarrec/nuxt-pwa-module/commit/4326ebac0b02064958cad6035b50831a66a4fbfa))
+
 ### [0.9.1](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.9.0...v0.9.1) (2022-10-22)
 
 
