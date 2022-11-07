@@ -1,5 +1,5 @@
 import { fetch, useTestContext } from '@nuxt/test-utils'
-import globby from 'globby'
+import { globby } from 'globby'
 import { join, relative } from 'pathe'
 import { joinURL } from 'ufo'
 import { expect } from 'vitest'
