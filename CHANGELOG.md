@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.1](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.11.0...v0.11.1) (2022-11-17)
+
+
+### Bug Fixes
+
+* **meta:** twitter image should use ogHost ([f1c0698](https://github.com/kevinmarrec/nuxt-pwa-module/commit/f1c0698d5a251e57b232519d13c67b9407275b71))
+
 ## [0.11.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.10.0...v0.11.0) (2022-11-17)
 
 
