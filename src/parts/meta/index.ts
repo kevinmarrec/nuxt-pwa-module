@@ -1,4 +1,5 @@
 import { useNuxt } from '@nuxt/kit'
+import { joinURL } from 'ufo'
 import type { PWAContext } from '../../types'
 
 export default (pwa: PWAContext) => {
@@ -43,11 +44,14 @@ export default (pwa: PWAContext) => {
   }
 
   // Title
-  if (!head.title && !head.titleTemplate)
-    head.title = options.name
+  if (options.title === true)
+    options.title = typeof head.title == 'string' ? head.title : options.name
 
-  // IOS launch icon title
-  head.meta.push({ name: 'apple-mobile-web-app-title', content: head.title })
+  if (options.title) {
+    head.title = head.title ?? options.title
+    // IOS launch icon title
+    head.meta.push({ name: 'apple-mobile-web-app-title', content: options.title })
+  }
 
   // Author
   if (options.author)
@@ -82,14 +86,14 @@ export default (pwa: PWAContext) => {
     head.meta.push({ property: 'og:url', content: options.ogUrl })
 
   // og:title
-  if (options.ogTitle === true)
-    options.ogTitle = options.name
+  if (options.ogTitle === true && options.title)
+    options.ogTitle = options.title
 
   if (options.ogTitle)
     head.meta.push({ property: 'og:title', content: options.ogTitle })
 
   // og:site_name
-  if (options.ogSiteName === true)
+  if (options.ogSiteName === true && options.name)
     options.ogSiteName = options.name
 
   if (options.ogSiteName)
@@ -114,7 +118,7 @@ export default (pwa: PWAContext) => {
     }
   }
   else if (typeof options.ogImage === 'string') {
-    options.ogImage = { path: options.ogImage }
+    options.ogImage = { path: joinURL(nuxt.options.app.baseURL, options.ogImage) }
   }
 
   if (options.ogImage) {

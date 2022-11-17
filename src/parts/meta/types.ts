@@ -1,6 +1,7 @@
 export interface MetaOptions {
   name: string
   author: string | false
+  title: string | boolean
   description: string | false
   favicon: boolean
   mobileApp: boolean

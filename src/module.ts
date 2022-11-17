@@ -35,6 +35,7 @@ export default defineNuxtModule<PWAOptions>({
     meta: {
       name: process.env.npm_package_name! || 'Nuxt PWA',
       author: process.env.npm_package_author_name!,
+      title: true,
       description: process.env.npm_package_description!,
       favicon: true,
       mobileApp: true,
