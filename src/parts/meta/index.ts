@@ -2,6 +2,8 @@ import { useNuxt } from '@nuxt/kit'
 import { joinURL } from 'ufo'
 import type { PWAContext } from '../../types'
 
+const isUrl = (path: string) => /^https?:/.test(path)
+
 export default (pwa: PWAContext) => {
   if (!pwa.meta || !pwa.manifest)
     return
@@ -118,24 +120,20 @@ export default (pwa: PWAContext) => {
     }
   }
   else if (typeof options.ogImage === 'string') {
-    options.ogImage = { path: joinURL(nuxt.options.app.baseURL, options.ogImage) }
+    options.ogImage = { path: options.ogImage }
   }
 
-  if (options.ogImage) {
-    const isUrl = (path: string) => /^https?:/.test(path)
-
-    if (options.ogHost || isUrl(options.ogImage.path)) {
-      head.meta.push({
-        property: 'og:image',
-        content: isUrl(options.ogImage.path) ? options.ogImage.path : options.ogHost + options.ogImage.path,
-      })
-      if (options.ogImage.width && options.ogImage.height) {
-        head.meta.push({ property: 'og:image:width', content: options.ogImage.width })
-        head.meta.push({ property: 'og:image:height', content: options.ogImage.height })
-      }
-      if (options.ogImage.type)
-        head.meta.push({ property: 'og:image:type', content: options.ogImage.type })
+  if (options.ogImage && (options.ogHost || isUrl(options.ogImage.path))) {
+    head.meta.push({
+      property: 'og:image',
+      content: isUrl(options.ogImage.path) ? options.ogImage.path : joinURL(options.ogHost!, nuxt.options.app.baseURL, options.ogImage.path),
+    })
+    if (options.ogImage.width && options.ogImage.height) {
+      head.meta.push({ property: 'og:image:width', content: options.ogImage.width })
+      head.meta.push({ property: 'og:image:height', content: options.ogImage.height })
     }
+    if (options.ogImage.type)
+      head.meta.push({ property: 'og:image:type', content: options.ogImage.type })
   }
 
   // twitter:card
@@ -155,8 +153,12 @@ export default (pwa: PWAContext) => {
     head.meta.push({ name: 'twitter:description', content: options.twitterDescription })
 
   // twitter:image
-  if (options.twitterImage)
-    head.meta.push({ name: 'twitter:image', content: joinURL(nuxt.options.app.baseURL, options.twitterImage) })
+  if (options.twitterImage && (options.ogHost || isUrl(options.twitterImage))) {
+    head.meta.push({
+      name: 'twitter:image',
+      content: isUrl(options.twitterImage) ? options.twitterImage : joinURL(options.ogHost!, nuxt.options.app.baseURL, options.twitterImage),
+    })
+  }
 
   // twitter:creator
   if (options.twitterCreator)
