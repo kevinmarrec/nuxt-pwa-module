@@ -146,6 +146,18 @@ export default (pwa: PWAContext) => {
   if (options.twitterSite)
     head.meta.push({ name: 'twitter:site', content: options.twitterSite })
 
+  // twitter:title
+  if (options.twitterTitle)
+    head.meta.push({ name: 'twitter:title', content: options.twitterTitle })
+
+  // twitter:description
+  if (options.twitterDescription)
+    head.meta.push({ name: 'twitter:description', content: options.twitterDescription })
+
+  // twitter:image
+  if (options.twitterImage)
+    head.meta.push({ name: 'twitter:image', content: joinURL(nuxt.options.app.baseURL, options.twitterImage) })
+
   // twitter:creator
   if (options.twitterCreator)
     head.meta.push({ name: 'twitter:creator', content: options.twitterCreator })

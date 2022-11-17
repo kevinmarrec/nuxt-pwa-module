@@ -52,6 +52,9 @@ export default defineNuxtModule<PWAOptions>({
       ogUrl: true,
       twitterCard: undefined,
       twitterSite: undefined,
+      twitterTitle: undefined,
+      twitterDescription: undefined,
+      twitterImage: undefined,
       twitterCreator: undefined,
     },
     workbox: {
