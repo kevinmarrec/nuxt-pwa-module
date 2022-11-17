@@ -1,6 +1,6 @@
 {
   "name": "@kevinmarrec/nuxt-pwa",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Zero config PWA solution for Nuxt 3",
   "author": "Kevin Marrec <kevin@marrec.io>",
   "license": "MIT",
