@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.11.1...v0.12.0) (2022-11-23)
+
+
+### Features
+
+* **meta:** add hid to all meta tags ([faa5ad6](https://github.com/kevinmarrec/nuxt-pwa-module/commit/faa5ad639e8d675403199fbb191ccc2b18e8f3d8))
+
 ### [0.11.1](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.11.0...v0.11.1) (2022-11-17)
 
 
