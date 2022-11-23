@@ -16,10 +16,7 @@ export interface MetaOptions {
   ogImage: string | boolean | { path: string; width?: number; height?: number; type?: string }
   ogHost: string | undefined
   ogUrl: string | boolean
-  twitterCard: 'summary' | 'summary_large_image' | 'app' | 'player' | undefined
+  twitterCard: 'summary' | 'summary_large_image' | 'app' | 'player' | false
   twitterSite: string | undefined
-  twitterTitle: string | undefined
-  twitterDescription: string | undefined
-  twitterImage: string | undefined
   twitterCreator: string | undefined
 }

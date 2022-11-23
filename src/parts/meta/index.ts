@@ -148,18 +148,6 @@ export default (pwa: PWAContext) => {
   if (options.twitterSite)
     addMeta(head, 'twitter:site', options.twitterSite)
 
-  // twitter:title
-  if (options.twitterTitle)
-    addMeta(head, 'twitter:title', options.twitterTitle)
-
-  // twitter:description
-  if (options.twitterDescription)
-    addMeta(head, 'twitter:description', options.twitterDescription)
-
-  // twitter:image
-  if (options.twitterImage && (options.ogHost || isUrl(options.twitterImage)))
-    addMeta(head, 'twitter:image', isUrl(options.twitterImage) ? options.twitterImage : joinURL(options.ogHost!, nuxt.options.app.baseURL, options.twitterImage))
-
   // twitter:creator
   if (options.twitterCreator)
     addMeta(head, 'twitter:creator', options.twitterCreator)
