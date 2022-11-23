@@ -1,8 +1,19 @@
 import { useNuxt } from '@nuxt/kit'
+import type { MetaObject } from '@nuxt/schema'
 import { joinURL } from 'ufo'
 import type { PWAContext } from '../../types'
 
+type NuxtAppHead = Required<MetaObject>
+
 const isUrl = (path: string) => /^https?:/.test(path)
+
+function addMeta (head: NuxtAppHead, name: string, content: string | number | boolean) {
+  head.meta.push({ hid: name, name, content })
+}
+
+function addMetaProperty (head: NuxtAppHead, property: string, content: string | number | boolean) {
+  head.meta.push({ hid: property, property, content })
+}
 
 export default (pwa: PWAContext) => {
   if (!pwa.meta || !pwa.manifest)
@@ -10,15 +21,15 @@ export default (pwa: PWAContext) => {
 
   const options = pwa.meta
   const nuxt = useNuxt()
-  const head = nuxt.options.app.head as Required<typeof nuxt.options.app.head>
+  const head = nuxt.options.app.head as NuxtAppHead
 
   // mobileApp
   if (options.mobileApp)
-    head.meta.push({ name: 'mobile-web-app-capable', content: 'yes' })
+    addMeta(head, 'mobile-web-app-capable', 'yes')
 
   // mobileApp (IOS)
   if (options.mobileAppIOS) {
-    head.meta.push({ name: 'apple-mobile-web-app-capable', content: 'yes' })
+    addMeta(head, 'apple-mobile-web-app-capable', 'yes')
 
     // Inject splash screen metas
     if (pwa._splashMetas)
@@ -26,12 +37,8 @@ export default (pwa: PWAContext) => {
   }
 
   // statusBarStyle (IOS)
-  if (options.mobileAppIOS || options.appleStatusBarStyle) {
-    head.meta.push({
-      name: 'apple-mobile-web-app-status-bar-style',
-      content: options.appleStatusBarStyle || 'default',
-    })
-  }
+  if (options.mobileAppIOS || options.appleStatusBarStyle)
+    addMeta(head, 'apple-mobile-web-app-status-bar-style', options.appleStatusBarStyle || 'default')
 
   // Icons
   if (pwa.manifest && pwa.manifest.icons && pwa.manifest.icons.length > 0) {
@@ -52,22 +59,22 @@ export default (pwa: PWAContext) => {
   if (options.title) {
     head.title = head.title ?? options.title
     // IOS launch icon title
-    head.meta.push({ name: 'apple-mobile-web-app-title', content: options.title })
+    addMeta(head, 'apple-mobile-web-app-title', options.title)
   }
 
   // Author
   if (options.author)
-    head.meta.push({ name: 'author', content: options.author })
+    addMeta(head, 'author', options.author)
 
   // Description
   if (options.description)
-    head.meta.push({ name: 'description', content: options.description })
+    addMeta(head, 'description', options.description)
 
   // Theme Color
   if (options.theme_color !== false) {
     const themeColor = pwa.meta.theme_color || (pwa.manifest && pwa.manifest.theme_color)
     if (themeColor)
-      head.meta.push({ name: 'theme-color', content: themeColor })
+      addMeta(head, 'theme-color', themeColor)
   }
 
   // Lang
@@ -78,35 +85,35 @@ export default (pwa: PWAContext) => {
 
   // og:type
   if (options.ogType)
-    head.meta.push({ property: 'og:type', content: options.ogType })
+    addMetaProperty(head, 'og:type', options.ogType)
 
   // og:url
   if (options.ogHost && options.ogUrl === true)
     options.ogUrl = options.ogHost
 
   if (options.ogUrl && options.ogUrl !== true)
-    head.meta.push({ property: 'og:url', content: options.ogUrl })
+    addMetaProperty(head, 'og:url', options.ogUrl)
 
   // og:title
   if (options.ogTitle === true && options.title)
     options.ogTitle = options.title
 
   if (options.ogTitle)
-    head.meta.push({ property: 'og:title', content: options.ogTitle })
+    addMetaProperty(head, 'og:title', options.ogTitle)
 
   // og:site_name
   if (options.ogSiteName === true && options.name)
     options.ogSiteName = options.name
 
   if (options.ogSiteName)
-    head.meta.push({ property: 'og:site_name', content: options.ogSiteName })
+    addMetaProperty(head, 'og:site_name', options.ogSiteName)
 
   // og:description
   if (options.ogDescription === true)
     options.ogDescription = options.description
 
   if (options.ogDescription)
-    head.meta.push({ property: 'og:description', content: options.ogDescription })
+    addMetaProperty(head, 'og:description', options.ogDescription)
 
   // og:image
   if (options.ogImage === true) {
@@ -124,45 +131,38 @@ export default (pwa: PWAContext) => {
   }
 
   if (options.ogImage && (options.ogHost || isUrl(options.ogImage.path))) {
-    head.meta.push({
-      property: 'og:image',
-      content: isUrl(options.ogImage.path) ? options.ogImage.path : joinURL(options.ogHost!, nuxt.options.app.baseURL, options.ogImage.path),
-    })
+    addMetaProperty(head, 'og:image', isUrl(options.ogImage.path) ? options.ogImage.path : joinURL(options.ogHost!, nuxt.options.app.baseURL, options.ogImage.path))
     if (options.ogImage.width && options.ogImage.height) {
-      head.meta.push({ property: 'og:image:width', content: options.ogImage.width })
-      head.meta.push({ property: 'og:image:height', content: options.ogImage.height })
+      addMetaProperty(head, 'og:image:width', options.ogImage.width)
+      addMetaProperty(head, 'og:image:height', options.ogImage.height)
     }
     if (options.ogImage.type)
-      head.meta.push({ property: 'og:image:type', content: options.ogImage.type })
+      addMetaProperty(head, 'og:image:type', options.ogImage.type)
   }
 
   // twitter:card
   if (options.twitterCard)
-    head.meta.push({ name: 'twitter:card', content: options.twitterCard })
+    addMeta(head, 'twitter:card', options.twitterCard)
 
   // twitter:site
   if (options.twitterSite)
-    head.meta.push({ name: 'twitter:site', content: options.twitterSite })
+    addMeta(head, 'twitter:site', options.twitterSite)
 
   // twitter:title
   if (options.twitterTitle)
-    head.meta.push({ name: 'twitter:title', content: options.twitterTitle })
+    addMeta(head, 'twitter:title', options.twitterTitle)
 
   // twitter:description
   if (options.twitterDescription)
-    head.meta.push({ name: 'twitter:description', content: options.twitterDescription })
+    addMeta(head, 'twitter:description', options.twitterDescription)
 
   // twitter:image
-  if (options.twitterImage && (options.ogHost || isUrl(options.twitterImage))) {
-    head.meta.push({
-      name: 'twitter:image',
-      content: isUrl(options.twitterImage) ? options.twitterImage : joinURL(options.ogHost!, nuxt.options.app.baseURL, options.twitterImage),
-    })
-  }
+  if (options.twitterImage && (options.ogHost || isUrl(options.twitterImage)))
+    addMeta(head, 'twitter:image', isUrl(options.twitterImage) ? options.twitterImage : joinURL(options.ogHost!, nuxt.options.app.baseURL, options.twitterImage))
 
   // twitter:creator
   if (options.twitterCreator)
-    head.meta.push({ name: 'twitter:creator', content: options.twitterCreator })
+    addMeta(head, 'twitter:creator', options.twitterCreator)
 
   // Manifest
   if (pwa._manifestMeta)
