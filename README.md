@@ -114,7 +114,7 @@ pnpm example:start
 
 Made with ❤️
 
-Published under the [MIT License](./LICENCE).
+Published under the [MIT License](./LICENSE).
 
 <!-- Badges -->
 
