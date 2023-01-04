@@ -46,7 +46,7 @@ export const metaFromDevice = (device: Device, options: { assetsDir: string; has
   const { assetsDir, hash } = options
 
   return {
-    href: join(assetsDir, `${width}x${height}${hash}.png`),
+    href: join(assetsDir, `${width}x${height}.${hash}.png`),
     media: [
       `(device-width: ${width / pixelRatio}px)`,
       `(device-height: ${height / pixelRatio}px)`,

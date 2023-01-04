@@ -47,7 +47,7 @@ export default async (pwa: PWAContext) => {
     options.sizes = [64, 120, 144, 152, 192, 384, 512]
 
   // Hash as suffix for production
-  const hash = nuxt.options.dev ? '' : `.${await getFileHash(options.source)}`
+  const hash = await getFileHash(options.source)
 
   const iconsDir = joinURL(
     nuxt.options.app.baseURL,
@@ -85,7 +85,8 @@ export default async (pwa: PWAContext) => {
 
   const generateOptions = JSON.stringify({
     input: options.source,
-    distDir: join(pwa._buildAssetsDir, options.targetDir),
+    buildAssetsDir: pwa._buildAssetsDir,
+    targetDir: options.targetDir,
     sizes: options.sizes,
     maskableInput: options.maskableSource,
     maskablePadding: options.maskablePadding,
