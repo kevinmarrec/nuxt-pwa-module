@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.14.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.13.0...v0.14.0) (2023-01-05)
+
+
+### Features
+
+* **icon:** cache generated images ([#80](https://github.com/kevinmarrec/nuxt-pwa-module/issues/80)) ([e64e5da](https://github.com/kevinmarrec/nuxt-pwa-module/commit/e64e5da70591f47f311221215a041b606b2b2fe9))
+* silent mode ([#83](https://github.com/kevinmarrec/nuxt-pwa-module/issues/83)) ([317f92c](https://github.com/kevinmarrec/nuxt-pwa-module/commit/317f92cb11685b9eccb0af4b28a5c553a5633df4))
+* **workbox:** precaching ([#81](https://github.com/kevinmarrec/nuxt-pwa-module/issues/81)) ([3db1ee5](https://github.com/kevinmarrec/nuxt-pwa-module/commit/3db1ee5693b884f07b4305e63794a342b5ac7d72))
+
+
+### Bug Fixes
+
+* use consola level raw value for silent mode ([52372de](https://github.com/kevinmarrec/nuxt-pwa-module/commit/52372deec4641e048b5b632d4445952047e55613))
+
 ## [0.13.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.12.0...v0.13.0) (2022-11-23)
 
 ## [0.12.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.11.1...v0.12.0) (2022-11-23)
