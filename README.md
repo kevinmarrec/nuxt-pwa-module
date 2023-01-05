@@ -122,7 +122,7 @@ Published under the [MIT License](./LICENSE).
 [npm-version-href]: https://npmjs.com/package/@kevinmarrec/nuxt-pwa
 [npm-downloads-src]: https://img.shields.io/npm/dm/@kevinmarrec/nuxt-pwa?style=flat-square
 [npm-downloads-href]: https://npmjs.com/package/@kevinmarrec/nuxt-pwa
-[github-actions-src]: https://img.shields.io/github/workflow/status/kevinmarrec/nuxt-pwa-module/CI?style=flat-square
+[github-actions-src]: https://img.shields.io/github/actions/workflow/status/kevinmarrec/nuxt-pwa-module/ci.yml?style=flat-square
 [github-actions-href]: https://github.com/kevinmarrec/nuxt-pwa-module/actions?query=workflow%3Aci
 [codecov-src]: https://img.shields.io/codecov/c/gh/kevinmarrec/nuxt-pwa-module/main?style=flat-square
 [codecov-href]: https://codecov.io/gh/kevinmarrec/nuxt-pwa-module
