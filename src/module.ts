@@ -56,7 +56,12 @@ export default defineNuxtModule<PWAOptions>({
     },
     workbox: {
       autoRegister: true,
+      cacheOptions: {
+        directoryIndex: '/',
+        revision: undefined,
+      },
       enabled: !nuxt.options.dev,
+      preCaching: [],
       templatePath: null,
       workboxVersion: '6.5.3',
       workboxUrl: null,
