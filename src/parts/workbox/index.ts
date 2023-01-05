@@ -1,9 +1,11 @@
 import { addTemplate, useNuxt } from '@nuxt/kit'
-import consola from 'consola'
+import _consola, { LogLevel } from 'consola'
 import { join } from 'pathe'
 import { randomString } from '../../utils'
 import type { PWAContext } from '../../types'
 import type { WorkboxOptions } from './types'
+
+const consola = _consola.create({ level: process.env.NUXT_PWA_SILENT === '1' ? LogLevel.Silent : undefined })
 
 export default async (pwa: PWAContext) => {
   if (!pwa.workbox || !pwa.workbox.enabled)
