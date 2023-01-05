@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs'
 import { fork } from 'node:child_process'
-import _consola, { LogLevel } from 'consola'
+import _consola from 'consola'
 import { relative, resolve } from 'pathe'
 import { provider } from 'std-env'
 import { joinURL } from 'ufo'
@@ -9,7 +9,7 @@ import type { PWAContext } from '../../types'
 import { defaultDevices, metaFromDevice } from './splash'
 import { getFileHash, makeManifestIcon } from './utils'
 
-const consola = _consola.create({ level: process.env.NUXT_PWA_SILENT === '1' ? LogLevel.Silent : undefined })
+const consola = _consola.create({ level: process.env.NUXT_PWA_SILENT === '1' ? -Infinity : undefined })
 
 export const defaultSizes = [64, 120, 144, 152, 192, 384, 512]
 
