@@ -1,4 +1,6 @@
-importScripts('<%= options.workboxUrl %>')
+const options = <%= JSON.stringify(options) %>
+
+importScripts(options.workboxUrl)
 
 self.addEventListener('install', () => self.skipWaiting())
 self.addEventListener('activate', () => self.clients.claim())
@@ -7,6 +9,7 @@ const { registerRoute } = workbox.routing
 const { NetworkFirst, StaleWhileRevalidate, CacheFirst } = workbox.strategies
 const { CacheableResponsePlugin } = workbox.cacheableResponse
 const { ExpirationPlugin } = workbox.expiration
+const { precacheAndRoute } = workbox.precaching
 
 // Cache page navigations (html) with a Network First strategy
 registerRoute(
@@ -48,3 +51,8 @@ registerRoute(
     ]
   })
 )
+
+// Precaching
+if (options.preCaching.length) {
+  precacheAndRoute(options.preCaching, options.cacheOptions)
+}

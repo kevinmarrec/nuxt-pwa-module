@@ -1,7 +1,9 @@
 import { addTemplate, useNuxt } from '@nuxt/kit'
 import consola from 'consola'
 import { join } from 'pathe'
+import { randomString } from '../../utils'
 import type { PWAContext } from '../../types'
+import type { WorkboxOptions } from './types'
 
 export default async (pwa: PWAContext) => {
   if (!pwa.workbox || !pwa.workbox.enabled)
@@ -17,6 +19,16 @@ export default async (pwa: PWAContext) => {
   // Use Workbox CDN by default
   if (!options.workboxUrl)
     options.workboxUrl = `https://storage.googleapis.com/workbox-cdn/releases/${options.workboxVersion}/workbox-sw.js`
+
+  if (!options.cacheOptions.revision)
+    options.cacheOptions.revision = randomString(12)
+
+  const normalizePreCaching = (arr: WorkboxOptions['preCaching']) => arr.map(url => ({
+    revision: options.cacheOptions.revision!,
+    url: typeof url === 'string' ? url : url.url,
+  }))
+
+  options.preCaching = normalizePreCaching(options.preCaching)
 
   // Define Service Worker
   addTemplate({
