@@ -1,13 +1,15 @@
 import { existsSync } from 'node:fs'
 import { fork } from 'node:child_process'
-import consola from 'consola'
-import { join, relative, resolve } from 'pathe'
+import _consola from 'consola'
+import { relative, resolve } from 'pathe'
 import { provider } from 'std-env'
 import { joinURL } from 'ufo'
 import { addTemplate, useNuxt } from '@nuxt/kit'
 import type { PWAContext } from '../../types'
 import { defaultDevices, metaFromDevice } from './splash'
 import { getFileHash, makeManifestIcon } from './utils'
+
+const consola = _consola.create({ level: process.env.NUXT_PWA_SILENT === '1' ? -Infinity : undefined })
 
 export const defaultSizes = [64, 120, 144, 152, 192, 384, 512]
 
@@ -47,7 +49,7 @@ export default async (pwa: PWAContext) => {
     options.sizes = [64, 120, 144, 152, 192, 384, 512]
 
   // Hash as suffix for production
-  const hash = nuxt.options.dev ? '' : `.${await getFileHash(options.source)}`
+  const hash = await getFileHash(options.source)
 
   const iconsDir = joinURL(
     nuxt.options.app.baseURL,
@@ -85,7 +87,8 @@ export default async (pwa: PWAContext) => {
 
   const generateOptions = JSON.stringify({
     input: options.source,
-    distDir: join(pwa._buildAssetsDir, options.targetDir),
+    buildAssetsDir: pwa._buildAssetsDir,
+    targetDir: options.targetDir,
     sizes: options.sizes,
     maskableInput: options.maskableSource,
     maskablePadding: options.maskablePadding,
