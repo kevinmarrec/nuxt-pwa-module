@@ -21,7 +21,7 @@ export default (pwa: PWAContext) => {
 
   const options = pwa.meta
   const nuxt = useNuxt()
-  const head = nuxt.options.app.head as NuxtAppHead
+  const head = (nuxt.options.app.head || nuxt.options.head) as NuxtAppHead
 
   // mobileApp
   if (options.mobileApp)
