@@ -73,4 +73,9 @@ export interface ManifestOptions {
   prefer_related_applications?: boolean
   share_target?: ManifestShareTarget
   protocol_handlers?: ManifestProtocolHandler[]
+  /**
+   * Set meta crossorigin attribute
+   * @see https://web.dev/add-manifest/#link-manifest
+   */
+  crossorigin?: string
 }
