@@ -11,4 +11,7 @@ export default defineAppConfig({
       github: 'kevinmarrec/nuxt-pwa-module',
     },
   },
+  aside: {
+    level: 1
+  }
 })
