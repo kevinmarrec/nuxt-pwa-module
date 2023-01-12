@@ -1,3 +1,5 @@
+export type ManifestCrossOrigin = 'anonymous' | 'use-credentials'
+
 export type ManifestDisplay = 'fullscreen' | 'standalone' | 'minimal-ui' | 'browser'
 
 export type ManifestDisplayOverride = ManifestDisplay | 'window-controls-overlay'
@@ -74,8 +76,9 @@ export interface ManifestOptions {
   share_target?: ManifestShareTarget
   protocol_handlers?: ManifestProtocolHandler[]
   /**
-   * Set meta crossorigin attribute
+   * Set manifest meta crossorigin attribute
+   * @see https://developer.mozilla.org/fr/docs/Web/HTML/Attributes/crossorigin
    * @see https://web.dev/add-manifest/#link-manifest
    */
-  crossorigin?: string
+  crossorigin?: ManifestCrossOrigin
 }
