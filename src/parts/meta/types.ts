@@ -6,7 +6,7 @@ export interface MetaOptions {
   favicon: boolean
   mobileApp: boolean
   mobileAppIOS: boolean
-  appleStatusBarStyle: boolean
+  appleStatusBarStyle: 'default' | 'black' | 'black-translucent' | false
   theme_color: string | false | undefined
   lang: string | false
   ogType: string | false
