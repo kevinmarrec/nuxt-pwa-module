@@ -10,8 +10,22 @@ export default defineAppConfig({
       twitter: '@nuxt_js',
       github: 'kevinmarrec/nuxt-pwa-module',
     },
+    header: {
+      logo: true,
+    },
+    footer: {
+      iconLinks: [
+        {
+          label: 'NuxtJS',
+          href: 'https://nuxtjs.org',
+          icon: 'IconNuxt',
+        },
+        {
+          label: 'Vue Telescope',
+          href: 'https://vuetelescope.com',
+          icon: 'IconVueTelescope',
+        },
+      ],
+    },
   },
-  aside: {
-    level: 1
-  }
 })
