@@ -8,8 +8,9 @@ export default (pwa: PWAContext) => {
     return
 
   const nuxt = useNuxt()
+  const { crossorigin, ...manifest } = pwa.manifest
 
-  nuxt.options.runtimeConfig.public.pwaManifest = pwa.manifest
+  nuxt.options.runtimeConfig.public.pwaManifest = manifest
 
   if (nuxt.options.ssr) {
     addServerHandler({
@@ -20,7 +21,7 @@ export default (pwa: PWAContext) => {
   else {
     addTemplate({
       filename: 'manifest.json',
-      getContents: () => JSON.stringify(pwa.manifest),
+      getContents: () => JSON.stringify(manifest),
       dst: join(pwa._buildDir, 'manifest.json'),
       write: true,
     })
@@ -29,5 +30,6 @@ export default (pwa: PWAContext) => {
   pwa._manifestMeta = {
     rel: 'manifest',
     href: joinURL(nuxt.options.app.baseURL, 'manifest.json'),
+    crossorigin,
   }
 }
