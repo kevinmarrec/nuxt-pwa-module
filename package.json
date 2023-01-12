@@ -44,12 +44,12 @@
     "@types/fs-extra": "^11.0.1",
     "@types/sharp": "^0.31.1",
     "@unocss/nuxt": "^0.48.3",
-    "@vitest/coverage-c8": "^0.27.0",
+    "@vitest/coverage-c8": "^0.27.1",
     "eslint": "^8.31.0",
     "nuxt": "^3.0.0",
     "standard-version": "^9.5.0",
     "typescript": "~4.9.4",
-    "vitest": "^0.27.0"
+    "vitest": "^0.27.1"
   },
   "dependencies": {
     "hasha": "^5.2.2",
