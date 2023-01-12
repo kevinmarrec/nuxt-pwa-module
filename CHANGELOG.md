@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.15.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.14.1...v0.15.0) (2023-01-12)
+
+
+### Features
+
+* **manifest:** add manifest meta crossorigin attribute ([#87](https://github.com/kevinmarrec/nuxt-pwa-module/issues/87)) ([c430214](https://github.com/kevinmarrec/nuxt-pwa-module/commit/c4302141961c8be7eb4013e6648b47858347a79b))
+
+
+### Bug Fixes
+
+* **meta:** improve appleStatusBarStyle types ([1f318d8](https://github.com/kevinmarrec/nuxt-pwa-module/commit/1f318d89fb9238082e180ea208b23d173a508aad)), closes [#85](https://github.com/kevinmarrec/nuxt-pwa-module/issues/85)
+
 ### [0.14.1](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.14.0...v0.14.1) (2023-01-10)
 
 
