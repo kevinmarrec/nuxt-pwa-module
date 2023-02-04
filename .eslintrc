@@ -1,6 +1,3 @@
 {
-  "extends": "@antfu",
-  "rules": {
-    "@typescript-eslint/space-before-function-paren": ["error", "always"]
-  }
+  "extends": "@kevinmarrec"
 }
