@@ -7,12 +7,25 @@ import type { WorkboxOptions } from './types'
 
 const consola = _consola.create({ level: process.env.NUXT_PWA_SILENT === '1' ? -Infinity : undefined })
 
+function addNitroPlugin (nuxt: ReturnType<typeof useNuxt>, plugin: string) {
+  nuxt.hook('nitro:config', (config) => {
+    config.externals = config.externals || {}
+    config.externals.inline = config.externals.inline || []
+    config.externals.inline.push(plugin)
+    config.plugins = config.plugins || []
+    config.plugins.push(plugin)
+  })
+}
+
 export default async (pwa: PWAContext) => {
-  if (!pwa.workbox || !pwa.workbox.enabled)
-    return
+  const nuxt = useNuxt()
+
+  if (!pwa.workbox || !pwa.workbox.enabled) {
+    // Unregister Service Worker
+    return addNitroPlugin(nuxt, pwa._resolver.resolve('./runtime/nitro/unregister-plugin'))
+  }
 
   const options = pwa.workbox
-  const nuxt = useNuxt()
 
   // Warning when in development mode
   if (nuxt.options.dev)
@@ -41,14 +54,6 @@ export default async (pwa: PWAContext) => {
   })
 
   // Register Service Worker
-  if (options.autoRegister) {
-    nuxt.hook('nitro:config', (config) => {
-      const plugin = pwa._resolver.resolve('./runtime/nitro-plugin')
-      config.externals = config.externals || {}
-      config.externals.inline = config.externals.inline || []
-      config.externals.inline.push(plugin)
-      config.plugins = config.plugins || []
-      config.plugins.push(plugin)
-    })
-  }
+  if (options.autoRegister)
+    addNitroPlugin(nuxt, pwa._resolver.resolve('./runtime/nitro/register-plugin'))
 }
