@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.16.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.15.0...v0.16.0) (2023-02-04)
+
+
+### Features
+
+* **workbox:** auto unregister when not enabled ([#92](https://github.com/kevinmarrec/nuxt-pwa-module/issues/92)) ([5b45153](https://github.com/kevinmarrec/nuxt-pwa-module/commit/5b45153e4e3e5f9dbdf19d5af73c6c819e43aacc))
+
 ## [0.15.0](https://github.com/kevinmarrec/nuxt-pwa-module/compare/v0.14.1...v0.15.0) (2023-01-12)
 
 
