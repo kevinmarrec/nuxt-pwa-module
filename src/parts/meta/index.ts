@@ -8,11 +8,11 @@ type NuxtAppHead = Required<MetaObject>
 const isUrl = (path: string) => /^https?:/.test(path)
 
 function addMeta (head: NuxtAppHead, name: string, content: string | number | boolean) {
-  head.meta.push({ hid: name, name, content })
+  head.meta.push({ name, content })
 }
 
 function addMetaProperty (head: NuxtAppHead, property: string, content: string | number | boolean) {
-  head.meta.push({ hid: property, property, content })
+  head.meta.push({ property, content })
 }
 
 export default (pwa: PWAContext) => {
