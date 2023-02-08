@@ -7,7 +7,7 @@ import { joinURL } from 'ufo'
 import { addTemplate, useNuxt } from '@nuxt/kit'
 import type { PWAContext } from '../../types'
 import { defaultDevices, metaFromDevice } from './splash'
-import { getFileHash, makeManifestIcon } from './utils'
+import { generateHash, makeManifestIcon } from './utils'
 
 const consola = _consola.create({ level: process.env.NUXT_PWA_SILENT === '1' ? -Infinity : undefined })
 
@@ -48,8 +48,8 @@ export default async (pwa: PWAContext) => {
   if (options.sizes.length === 0)
     options.sizes = [64, 120, 144, 152, 192, 384, 512]
 
-  // Hash as suffix for production
-  const hash = await getFileHash(options.source)
+  // Hash as suffix for production & used for build caching strategy
+  const hash = await generateHash(options)
 
   const iconsDir = joinURL(
     nuxt.options.app.baseURL,
