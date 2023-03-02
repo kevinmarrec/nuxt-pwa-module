@@ -10,4 +10,7 @@ export default defineNuxtConfig({
       mobileAppIOS: true,
     },
   },
+  vite: {
+    logLevel: 'silent',
+  },
 })
