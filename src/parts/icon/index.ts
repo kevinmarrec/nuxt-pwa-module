@@ -13,6 +13,10 @@ const consola = _consola.create({ level: process.env.NUXT_PWA_SILENT === '1' ? -
 
 export const defaultSizes = [64, 120, 144, 152, 192, 384, 512]
 
+function relativeWithDot (from: string, to: string) {
+  return relative(from, to).replace(/^([^.])/, './$1') || '.'
+}
+
 export default async (pwa: PWAContext) => {
   if (!pwa.icon || !pwa.manifest)
     return
@@ -123,6 +127,6 @@ export default async (pwa: PWAContext) => {
   }).dst.replace(/\.d\.ts$/, '')
 
   nuxt.hook('prepare:types', ({ tsConfig }) => {
-    tsConfig.compilerOptions.paths['#pwa'] = [relative(nuxt.options.srcDir, typesPath)]
+    tsConfig.compilerOptions.paths['#pwa'] = [relativeWithDot(nuxt.options.buildDir, typesPath)]
   })
 }
