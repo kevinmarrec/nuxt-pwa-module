@@ -41,7 +41,7 @@ export const defaultDevices = [
   ...landscapes,
 ]
 
-export const metaFromDevice = (device: Device, options: { assetsDir: string; hash: string }) => {
+export function metaFromDevice (device: Device, options: { assetsDir: string; hash: string }) {
   const { width, height, pixelRatio, orientation } = device
   const { assetsDir, hash } = options
 

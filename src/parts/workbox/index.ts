@@ -5,7 +5,7 @@ import { randomString } from '../../utils'
 import type { PWAContext } from '../../types'
 import type { WorkboxOptions } from './types'
 
-const consola = _consola.create({ level: process.env.NUXT_PWA_SILENT === '1' ? -Infinity : undefined })
+const consola = _consola.create({ level: process.env.NUXT_PWA_SILENT === '1' ? Number.NEGATIVE_INFINITY : undefined })
 
 function addNitroPlugin (nuxt: ReturnType<typeof useNuxt>, plugin: string) {
   nuxt.hook('nitro:config', (config) => {
