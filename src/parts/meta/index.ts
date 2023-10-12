@@ -16,29 +16,25 @@ function addMetaProperty (head: NuxtAppHead, property: string, content: string |
 }
 
 export default (pwa: PWAContext) => {
-  if (!pwa.meta || !pwa.manifest)
-    return
+  if (!pwa.meta || !pwa.manifest) { return }
 
   const options = pwa.meta
   const nuxt = useNuxt()
   const head = (nuxt.options.app.head || nuxt.options.head) as NuxtAppHead
 
   // mobileApp
-  if (options.mobileApp)
-    addMeta(head, 'mobile-web-app-capable', 'yes')
+  if (options.mobileApp) { addMeta(head, 'mobile-web-app-capable', 'yes') }
 
   // mobileApp (IOS)
   if (options.mobileAppIOS) {
     addMeta(head, 'apple-mobile-web-app-capable', 'yes')
 
     // Inject splash screen metas
-    if (pwa._splashMetas)
-      head.link.push(...pwa._splashMetas)
+    if (pwa._splashMetas) { head.link.push(...pwa._splashMetas) }
   }
 
   // statusBarStyle (IOS)
-  if (options.mobileAppIOS || options.appleStatusBarStyle)
-    addMeta(head, 'apple-mobile-web-app-status-bar-style', options.appleStatusBarStyle || 'default')
+  if (options.mobileAppIOS || options.appleStatusBarStyle) { addMeta(head, 'apple-mobile-web-app-status-bar-style', options.appleStatusBarStyle || 'default') }
 
   // Icons
   if (pwa.manifest && pwa.manifest.icons && pwa.manifest.icons.length > 0) {
@@ -53,8 +49,7 @@ export default (pwa: PWAContext) => {
   }
 
   // Title
-  if (options.title === true)
-    options.title = typeof head.title == 'string' ? head.title : options.name
+  if (options.title === true) { options.title = typeof head.title === 'string' ? head.title : options.name }
 
   if (options.title) {
     head.title = head.title ?? options.title
@@ -63,18 +58,15 @@ export default (pwa: PWAContext) => {
   }
 
   // Author
-  if (options.author)
-    addMeta(head, 'author', options.author)
+  if (options.author) { addMeta(head, 'author', options.author) }
 
   // Description
-  if (options.description)
-    addMeta(head, 'description', options.description)
+  if (options.description) { addMeta(head, 'description', options.description) }
 
   // Theme Color
   if (options.theme_color !== false) {
     const themeColor = pwa.meta.theme_color || (pwa.manifest && pwa.manifest.theme_color)
-    if (themeColor)
-      addMeta(head, 'theme-color', themeColor)
+    if (themeColor) { addMeta(head, 'theme-color', themeColor) }
   }
 
   // Lang
@@ -84,36 +76,27 @@ export default (pwa: PWAContext) => {
   }
 
   // og:type
-  if (options.ogType)
-    addMetaProperty(head, 'og:type', options.ogType)
+  if (options.ogType) { addMetaProperty(head, 'og:type', options.ogType) }
 
   // og:url
-  if (options.ogHost && options.ogUrl === true)
-    options.ogUrl = options.ogHost
+  if (options.ogHost && options.ogUrl === true) { options.ogUrl = options.ogHost }
 
-  if (options.ogUrl && options.ogUrl !== true)
-    addMetaProperty(head, 'og:url', options.ogUrl)
+  if (options.ogUrl && options.ogUrl !== true) { addMetaProperty(head, 'og:url', options.ogUrl) }
 
   // og:title
-  if (options.ogTitle === true && options.title)
-    options.ogTitle = options.title
+  if (options.ogTitle === true && options.title) { options.ogTitle = options.title }
 
-  if (options.ogTitle)
-    addMetaProperty(head, 'og:title', options.ogTitle)
+  if (options.ogTitle) { addMetaProperty(head, 'og:title', options.ogTitle) }
 
   // og:site_name
-  if (options.ogSiteName === true && options.name)
-    options.ogSiteName = options.name
+  if (options.ogSiteName === true && options.name) { options.ogSiteName = options.name }
 
-  if (options.ogSiteName)
-    addMetaProperty(head, 'og:site_name', options.ogSiteName)
+  if (options.ogSiteName) { addMetaProperty(head, 'og:site_name', options.ogSiteName) }
 
   // og:description
-  if (options.ogDescription === true)
-    options.ogDescription = options.description
+  if (options.ogDescription === true) { options.ogDescription = options.description }
 
-  if (options.ogDescription)
-    addMetaProperty(head, 'og:description', options.ogDescription)
+  if (options.ogDescription) { addMetaProperty(head, 'og:description', options.ogDescription) }
 
   // og:image
   if (options.ogImage === true) {
@@ -121,12 +104,10 @@ export default (pwa: PWAContext) => {
       const iconBig = pwa.manifest.icons[pwa.manifest.icons.length - 1]
       const [width, height] = iconBig.sizes.split('x').map(x => +x)
       options.ogImage = { path: iconBig.src, width, height, type: iconBig.type }
-    }
-    else {
+    } else {
       options.ogImage = false
     }
-  }
-  else if (typeof options.ogImage === 'string') {
+  } else if (typeof options.ogImage === 'string') {
     options.ogImage = { path: options.ogImage }
   }
 
@@ -136,23 +117,18 @@ export default (pwa: PWAContext) => {
       addMetaProperty(head, 'og:image:width', options.ogImage.width)
       addMetaProperty(head, 'og:image:height', options.ogImage.height)
     }
-    if (options.ogImage.type)
-      addMetaProperty(head, 'og:image:type', options.ogImage.type)
+    if (options.ogImage.type) { addMetaProperty(head, 'og:image:type', options.ogImage.type) }
   }
 
   // twitter:card
-  if (options.twitterCard)
-    addMeta(head, 'twitter:card', options.twitterCard)
+  if (options.twitterCard) { addMeta(head, 'twitter:card', options.twitterCard) }
 
   // twitter:site
-  if (options.twitterSite)
-    addMeta(head, 'twitter:site', options.twitterSite)
+  if (options.twitterSite) { addMeta(head, 'twitter:site', options.twitterSite) }
 
   // twitter:creator
-  if (options.twitterCreator)
-    addMeta(head, 'twitter:creator', options.twitterCreator)
+  if (options.twitterCreator) { addMeta(head, 'twitter:creator', options.twitterCreator) }
 
   // Manifest
-  if (pwa._manifestMeta)
-    head.link.push(pwa._manifestMeta)
+  if (pwa._manifestMeta) { head.link.push(pwa._manifestMeta) }
 }
