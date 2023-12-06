@@ -1,6 +1,6 @@
 # ⚠️ DEPRECATED ⚠️
 
-[Nuxt 3](https://nuxt.com/) is powered by [Vite](https://vitejs.dev/) which has today a amazing PWA plugin on his own.
+[Nuxt 3](https://nuxt.com/) is powered by [Vite](https://vitejs.dev/) which has today a amazing PWA plugin on his own, with Nuxt support.
 
 As a better solution has emerged, that's why this module will not longer be maintained.
 
