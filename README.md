@@ -4,7 +4,7 @@
 
 As a better solution has emerged, that's why this module will not longer be maintained.
 
-Consider using [Vite PWA for Nuxt 3](https://vite-pwa-org.netlify.app/) with [Vite PWA Assets Generator](https://vite-pwa-org.netlify.app/assets-generator/) instead.
+Consider using [Vite PWA for Nuxt 3](https://vite-pwa-org.netlify.app/frameworks/nuxt.html) with [Vite PWA Assets Generator](https://vite-pwa-org.netlify.app/assets-generator/) instead.
 
 As the main maintainer ([@kevinmarrec](https://github.com/kevinmarrec)), I want to thank all the contributors & the users who trusted in this project 🙏.
 
