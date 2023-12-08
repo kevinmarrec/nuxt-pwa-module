@@ -14,6 +14,6 @@ export function makeManifestIcon ({ iconsDir, size, purpose, hash }: ManifestIco
     src: joinURL(iconsDir, `${size}x${size}${purpose === 'maskable' ? '.maskable' : ''}.${hash}.png`),
     type: 'image/png',
     sizes: `${size}x${size}`,
-    purpose,
+    purpose
   }
 }

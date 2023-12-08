@@ -4,23 +4,26 @@ import { join, relative } from 'pathe'
 import { joinURL } from 'ufo'
 import { expect } from 'vitest'
 
-interface CustomMatchers {
-  toBeGenerated(): void
-  toBeServed(): void
+interface CustomMatchers<R = unknown> {
+  toBeGenerated(): R;
+  toBeServed(): R;
 }
 
-declare global {
-  namespace Vi {
-    interface Assertion extends CustomMatchers {}
-  }
+declare module 'vitest' {
+  interface Assertion<T = any> extends CustomMatchers<T> {}
+  interface AsymmetricMatchersContaining extends CustomMatchers {}
 }
 
 function useContext () {
-  return useTestContext() as ReturnType<typeof useTestContext> & { generatedFiles: string[] }
+  return useTestContext() as ReturnType<typeof useTestContext> & {
+    generatedFiles: string[];
+  }
 }
 
 function makeWithHashRegex (path: string): RegExp {
-  return new RegExp(path.replace(/\./g, '\.').replace(/\.([^\.]*)$/, '(\..{8})?\.$1'))
+  return new RegExp(
+    path.replace(/\./g, '.').replace(/\.([^.]*)$/, '(..{8})?.$1')
+  )
 }
 
 expect.extend({
@@ -30,25 +33,28 @@ expect.extend({
     if (!ctx.generatedFiles) {
       const { buildDir } = ctx.nuxt!.options
       const clientDist = join(buildDir, 'pwa')
-      ctx.generatedFiles = (await globby(clientDist)).map(path => relative(clientDist, path))
+      ctx.generatedFiles = (await globby(clientDist)).map(path =>
+        relative(clientDist, path)
+      )
     }
 
     const withHashRegex = makeWithHashRegex(received)
 
     return {
       pass: ctx.generatedFiles.some(file => withHashRegex.test(file)),
-      message: () => `${received} is generated`,
+      message: () => `${received} is generated`
     }
   },
   async toBeServed (received: string) {
     const ctx = useContext()
     const { baseURL } = ctx.nuxt!.options.app
     const withHashRegex = makeWithHashRegex(received)
-    const path = ctx.generatedFiles?.find(file => withHashRegex.test(file)) || received
+    const path =
+      ctx.generatedFiles?.find(file => withHashRegex.test(file)) || received
 
     return {
       pass: (await fetch(joinURL(baseURL, path))).ok,
-      message: () => `${received} is served`,
+      message: () => `${received} is served`
     }
-  },
+  }
 })

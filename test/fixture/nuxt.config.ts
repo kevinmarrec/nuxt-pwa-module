@@ -2,15 +2,15 @@ import PWA from '../../src/module'
 
 export default defineNuxtConfig({
   app: {
-    baseURL: '/foo/',
+    baseURL: '/foo/'
   },
   modules: [PWA],
   pwa: {
     meta: {
-      mobileAppIOS: true,
-    },
+      mobileAppIOS: true
+    }
   },
   vite: {
-    logLevel: 'silent',
-  },
+    logLevel: 'silent'
+  }
 })

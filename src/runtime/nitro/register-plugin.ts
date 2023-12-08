@@ -10,8 +10,8 @@ export default <NitroAppPlugin> function (nitro) {
         'if (\'serviceWorker\' in navigator) {',
         `  window.addEventListener('load', () => navigator.serviceWorker.register('${joinURL(useRuntimeConfig().app.baseURL, 'sw.js')}'))`,
         '}',
-        '</script>',
-      ].join('\n'),
+        '</script>'
+      ].join('\n')
     )
   })
 }

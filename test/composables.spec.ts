@@ -10,11 +10,11 @@ vi.mock('#imports', () => ({
       pwaManifest: {
         icons: [
           { sizes: '64x64', purpose: 'any', src: '/assets/icons/64x64.png' },
-          { sizes: '64x64', purpose: 'maskable', src: '/assets/icons/64x64.maskable.png' },
-        ],
-      },
-    },
-  }),
+          { sizes: '64x64', purpose: 'maskable', src: '/assets/icons/64x64.maskable.png' }
+        ]
+      }
+    }
+  })
 }))
 
 describe('composables', async () => {

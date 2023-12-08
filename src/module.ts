@@ -5,7 +5,7 @@ import type { PWAContext, PWAOptions } from './types'
 
 export default defineNuxtModule<PWAOptions>({
   meta: {
-    name: 'pwa',
+    name: 'pwa'
   },
   defaults: nuxt => ({
     icon: {
@@ -18,8 +18,8 @@ export default defineNuxtModule<PWAOptions>({
       splash: {
         backgroundColor: undefined,
         devices: [],
-        targetDir: 'splash',
-      },
+        targetDir: 'splash'
+      }
     },
     manifest: {
       name: process.env.npm_package_name! || 'Nuxt PWA',
@@ -30,7 +30,7 @@ export default defineNuxtModule<PWAOptions>({
       display: 'standalone',
       background_color: '#ffffff',
       theme_color: '#000000',
-      icons: [],
+      icons: []
     },
     meta: {
       name: process.env.npm_package_name! || 'Nuxt PWA',
@@ -52,39 +52,42 @@ export default defineNuxtModule<PWAOptions>({
       ogUrl: true,
       twitterCard: 'summary',
       twitterSite: undefined,
-      twitterCreator: undefined,
+      twitterCreator: undefined
     },
     workbox: {
       autoRegister: true,
       cacheOptions: {
         directoryIndex: '/',
-        revision: undefined,
+        revision: undefined
       },
       enabled: !nuxt.options.dev,
       preCaching: [],
       templatePath: null,
       workboxVersion: '6.5.3',
-      workboxUrl: null,
+      workboxUrl: null
       // TODO: More Workbox options
-    },
+    }
   }),
   async setup (options, nuxt) {
-    const { nitro, app: { buildAssetsDir }, buildDir } = nuxt.options
+    const {
+      nitro,
+      app: { buildAssetsDir },
+      buildDir
+    } = nuxt.options
 
     const ctx: PWAContext = {
       ...options,
       _buildAssetsDir: join(buildDir, 'pwa', buildAssetsDir),
       _buildDir: join(buildDir, 'pwa'),
-      _resolver: createResolver(import.meta.url),
+      _resolver: createResolver(import.meta.url)
     }
 
     addImportsDir(ctx._resolver.resolve('./runtime/composables'))
 
-    for (const part of parts)
-      await part(ctx)
+    for (const part of parts) { await part(ctx) }
 
     // Use nitro public assets to serve `sw.js`, `manifest.json` and assets (icons / splash screens)
     nitro.publicAssets = nitro.publicAssets || []
     nitro.publicAssets.push({ dir: ctx._buildDir, baseURL: '/' })
-  },
+  }
 })

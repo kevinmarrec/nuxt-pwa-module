@@ -24,8 +24,8 @@ export default <NitroAppPlugin> function (nitro) {
         '      }',
         '    })',
         '}',
-        '</script>',
-      ].join('\n'),
+        '</script>'
+      ].join('\n')
     )
   })
 }
